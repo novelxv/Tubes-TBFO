@@ -79,10 +79,11 @@ def evaluate_html_with_pda(html_code, pda_definition):
     productions = pda_definition['productions']
 
     current_state = start_state
-    stack = [start_stack]
-
+    stack = start_stack
+    i = 0
     for char in html_code:
         found_production = False
+        print(f"current_state: {current_state}, char: {char}, stack: {stack}")
         for production in productions:
             if (
                 production[0] == current_state and
@@ -90,14 +91,14 @@ def evaluate_html_with_pda(html_code, pda_definition):
                 production[2] == stack[-1]
             ):
                 current_state = production[3]
-                if production[4] == 'e':
-                    stack.pop()
-                else:
+                stack.pop()
+                if production[4] != 'e':
                     stack.extend(list(production[4]))
                 
                 found_production = True
                 break
-        
+        print(i)
+        i += 1
         if not found_production:
             print(f"Syntax Error at character '{char}'")
             return False

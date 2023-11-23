@@ -1,11 +1,11 @@
 Q H I J B C1 C2 C3 D P F # total states
 < > a b c d e f g h i j k l m n o p q r s t u v w x y z aa ab ac a1 b1 c1 d1 e1 f1 g1 h1 i1 j1 k1 l1 m1 n1 o1 p1 q1 r1 s1 t1 u1 v1 w1 x1 y1 z1 aa1 ab1 ac1 a2 b2 c2 d2 e2 f2 g2 h2 l3 m3 n3  "# input word symbols
-^ < > A R S T U V W X Y Z Z0 # stack symbols
+^ < > A R S T U V W X Y Z 0 # stack symbols
 Q # starting state
-Z0 # starting stack
+0 # starting stack
 F # accepting states
 F # accepts with empty stack or F - accepts with accepting state
-Q < Z0 Q XZ0
+Q < 0 Q X0
 Q c X Q YX
 Q > Y Q ZY
 Q " ^A Q e
@@ -81,7 +81,6 @@ C2 < T C2 <T
 C2 t T C2 AT
 C2 > AT C2 e
 C2 e T C3 T
-C3 C3
 D < T D e
 D e1 S D e
 D > R D e
@@ -89,4 +88,4 @@ D e Z P Z
 P < Z P e
 P c1 Y P e
 P > X P e
-P e Z0 F Z0
+P e 0 F 0

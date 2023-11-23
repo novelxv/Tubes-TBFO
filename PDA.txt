@@ -1,6 +1,6 @@
-Q H I J B C D P F # total states
+Q H I J B C1 C2 C3 D P F # total states
 < > a b c d e f g h i j k l m n o p q r s t u v w x y z aa ab ac a1 b1 c1 d1 e1 f1 g1 h1 i1 j1 k1 l1 m1 n1 o1 p1 q1 r1 s1 t1 u1 v1 w1 x1 y1 z1 aa1 ab1 ac1 a2 b2 c2 d2 e2 f2 g2 h2 l3 m3 n3  "# input word symbols
-^A A R S T U V W X Y Z Z0 # stack symbols
+^ < > A R S T U V W X Y Z Z0 # stack symbols
 Q # starting state
 Z0 # starting stack
 F # accepting states
@@ -19,16 +19,69 @@ H " ^A H e
 H " A H ^A
 H a2 V H AV
 H e W I W
+I f B I FB
+I > F I CF
+I f1 F I e
+I g B I GB
+I c2 G I EG
+I " E I "E
+I " "E I e
+I b2 G I FG
+I " F I "F
+I " "F I e
+I > GB I e
+I < W I BW
+I < C I e
+I > B I E
+I h B I HB
+I d2 H I DH
+I " D I "D
+I " "D I e
+I > H I CH
+I h1 H I e
 I e W J W
+J < W J e
+J d1 V J e
+J > U J e
 J e Z B Z
+B a2 S B AS
+B " A B ^A
+B " ^A B e
 B < Z B RZ
 B e R B SR
 B > S B TS
-B " ^A B e
-B " A B ^A
-B a2 S B AS
-B e T C T
-C e T D T
+B e T C1 T
+C1 < T C1 <T
+C1 < > C1 e 
+C1 > < C1 e
+C1 i < C1 l<
+C1 > l C1 >l
+C1 i1 l C1 e
+C1 j < C1 J<
+C1 > J C1 >J
+C1 j1 J C1 e
+C1 k < C1 K<
+C1 > K C1 >K
+C1 k1 K C1 e
+C1 l < C1 L<
+C1 > L C1 >L
+C1 l1 L C1 e
+C1 m < C1 M<
+C1 > M C1 >M
+C1 m1 M C1 e
+C1 n < C1 N<
+C1 > N C1 >N
+C1 n1 N C1 e
+C1 q < C1 Q<
+C1 > Q C1 >Q
+C1 q1 Q C1 e
+C1 e T C2 T
+C2 e T C1 T
+C2 < T C2 <T
+C2 t T C2 AT
+C2 > AT C2 e
+C2 e T C3 T
+C3 C3
 D < T D e
 D e1 S D e
 D > R D e

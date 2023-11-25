@@ -31,25 +31,33 @@ def read_pda_definition(file_path):
 def read_html_code(file_path):
     # Membaca kode HTML dari file eksternal
     with open(file_path, 'r') as file:
-        return file.read()
+        lines = file.readlines()
+    # Menghapus karakter newline dan menggabungkan baris
+    html_code = ''.join(line.strip() for line in lines)
+    return html_code
     
 def convert_html_symbols(html_code):
     # Mengonversi simbol-simbol dalam HTML
     symbol_mapping = {
-        'html' : 'c', 'head' : 'd', 'body' : 'e3', 
-        'title' : 'f', 'link' : 'g', 'script' : 'f',
-        'h1' : 'i', 'h2' : 'j', 'h3' : 'k',
-        'h4' : 'l', 'h5' : 'm', 'h6' : 'n',
+        '/html' : 'c1', 'html' : 'c', 
+        '/head' : 'd1', 'head' : 'd',
+        '/body' : 'e1', 'body' : 'e3',
+        '/title' : 'f1', 'title' : 'f',
+        'link' : 'g', 
+        '/h1' : 'i1', 'h1' : 'i',
+        '/h2' : 'j1', 'h2' : 'j',
+        '/h3' : 'k1', 'h3' : 'k',
+        '/h4' : 'l1', 'h4' : 'l',
+        '/h5' : 'm1', 'h5' : 'm',
+        '/h6' : 'n1', 'h6' : 'n',
+        '/script' : 'h1', 'script' : 'h',
         'em' : 'o', 'abbr' : 'q', 'strong' : 'r',
         'small' : 's', 'br' : 't', 'hr' : 't',
         'div' : 'u', 'img' : 'v', 'button' : 'w',
         'form' : 'x', 'input' : 'y', 'table' : 'z',
         'tr' : 'aa', 'td' : 'ab', 'th' : 'ac',
-        '/a' : 'a1', '/b' : 'b1', '/html' : 'c1',
-        '/head' : 'd1', '/body' : 'e1', '/title' : 'f1',
-        '/script' : 'h1', '/h1' : 'i1', '/h2' : 'j1', 
-        '/h3' : 'k1', '/h4' : 'l1', '/h5' : 'm1',
-        '/h6' : 'n1', '/em' : 'o1', '/p' : 'p1',
+        '/a' : 'a1', '/b' : 'b1', 
+        '/em' : 'o1', '/p' : 'p1',
         '/abbr' : 'q1', '/strong' : 'r1', '/small' : 's1',
         '/div' : 'u1', '/button' : 'w1', '/form' : '/x1',
         '/table' : 'z1', '/tr' : 'aa1', '/td' : 'ab1', 
@@ -65,6 +73,7 @@ def convert_html_symbols(html_code):
     converted_code = html_code
     for original_symbol, new_symbol in symbol_mapping.items():
         converted_code = converted_code.replace(original_symbol, new_symbol)
+    print(converted_code)
     return converted_code
     
 def evaluate_html_with_pda(html_code, pda_definition):
@@ -78,22 +87,39 @@ def evaluate_html_with_pda(html_code, pda_definition):
     accept_condition = pda_definition['accept_condition']
     productions = pda_definition['productions']
 
-    current_state = start_state
-    stack = start_stack
+    current_state = start_state[0]
+    stack = [start_stack[0]]
+    print("STACK\n", stack[0])
     i = 0
     for char in html_code:
         found_production = False
         print(f"current_state: {current_state}, char: {char}, stack: {stack}")
         for production in productions:
+            # print(production)
+            # print(f"curr_state: {production[0]}, readfw: {production[1]}, takefs: {production[2]}")
             if (
                 production[0] == current_state and
                 (production[1] == char or production[1] == 'e') and
-                production[2] == stack[-1]
+                production[2] == stack[0]
             ):
+                print("masuk")
+                # print(production[4])
                 current_state = production[3]
-                stack.pop()
-                if production[4] != 'e':
-                    stack.extend(list(production[4]))
+                # stack.pop(0)
+                # print(stack)
+                # print("Setelah pop", stack)
+                if production[1] != 'e':
+                    if production[4] == 'e':
+                        stack.pop(0)
+                    else:
+                        stack.insert(0, production[4][0])
+                print(stack)
+                # if production[4] != 'e':
+                #     # stack.extend(list(production[4]))
+                #     # print(stack)
+                #     for symbol in production[4]:
+                #         stack.insert(-1, symbol)
+                #     print(stack)
                 
                 found_production = True
                 break
@@ -103,8 +129,8 @@ def evaluate_html_with_pda(html_code, pda_definition):
             print(f"Syntax Error at character '{char}'")
             return False
 
-    # Cek final state dan stack
-    if current_state in accepting_states and (accept_condition == 'E' or not stack):
+    # Cek final state
+    if current_state in accepting_states:
         return True
     else:
         return False

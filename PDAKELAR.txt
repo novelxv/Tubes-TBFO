@@ -1026,7 +1026,7 @@ div1 * " div1 "
 div1 " "4 div1 e
 div1 < > div2 ^>
 div2 < > div2 ^>
-div2 u1 ^>u div3 e
+div2 u1 ^>U div3 e
 div3 > < body e
 div2 u ^ div4 U^
 div2 u C div4 UC
@@ -1036,11 +1036,11 @@ div4 " 4 div4 "4
 div4 * " div4 "
 div4 " "4 div4 e
 div4 < > div2 C>
-div2 u1 C>u div5 e
+div2 u1 C>U div5 e
 div5 > C div5 >C
 div5 < > div5 e
-div5 u1 C>u div5 e
-div5 u1 ^>u div3 e 
+div5 u1 C>U div5 e
+div5 u1 ^>U div3 e 
 body x < form X< # form dalam body
 form > X form >X
 form 2a X form 4X

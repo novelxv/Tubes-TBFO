@@ -85,7 +85,7 @@ def convert_html_symbols(html_code):
     print(converted_code) # debug
     return converted_code
 
-def process_input_symbols(current_state, input, stack, productions):
+def process_input_symbols(current_state, input, stack, productions, found_production):
     found_production = False
     print(f"current_state: {current_state}, input: {input}, top_stack: {stack[0]}")
     for production in productions:
@@ -116,7 +116,7 @@ def process_input_symbols(current_state, input, stack, productions):
     if not found_production:
         print(f"Syntax Error at character '{input}'")
 
-    return current_state, stack
+    return current_state, stack, found_production
     
 def evaluate_html_with_pda(html_code, pda_definition):
     # Mengevaluasi kode HTML dengan menggunakan PDA
@@ -129,6 +129,7 @@ def evaluate_html_with_pda(html_code, pda_definition):
 
     current_state = start_state[0]
     stack = [start_stack[0]]
+    found_production = True
     
     print("STACK\n", stack[0]) # debug
 
@@ -141,80 +142,94 @@ def evaluate_html_with_pda(html_code, pda_definition):
         count_underscore = 0
         comment = False
         i = 0
-        for char in html_code:
-            # >|sss $ _ * _ > sss|<      debug
-            # print(f"current_state: {current_state}, char: {char}, input: {input}, stack: {stack}")
-            if (char == '<' and not inside_tag):
-                if i != 0 and input:
-                    input = '*'
-                    print("input:", input) # debug
-                    current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                inside_tag = True
-                current_state, stack = process_input_symbols(current_state, char, stack, productions)
-                input = ""
-            elif (char != '>'): 
-                if char == '2' and inside_tag:
-                    if input:
+
+        if found_production:
+            for char in html_code:
+                # >|sss $ _ * _ > sss|<      debug
+                # print(f"current_state: {current_state}, char: {char}, input: {input}, stack: {stack}")
+                if (char == '<' and not inside_tag):
+                    if i != 0 and input:
+                        input = '*'
                         print("input:", input) # debug
-                        current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                        print("stack setelah proses input: ", stack)  # debug
-                    input = char
-                elif char == '"' and inside_tag:
-                    count_petik += 1
-                    if count_petik == 1:
+                        if found_production:
+                            current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
+                    inside_tag = True
+                    if found_production:
+                        current_state, stack, found_production = process_input_symbols(current_state, char, stack, productions, found_production)
+                    input = ""
+                elif (char != '>'): 
+                    if char == '2' and inside_tag:
                         if input:
                             print("input:", input) # debug
-                            current_state, stack = process_input_symbols(current_state, input, stack, productions)
+                            if found_production:
+                                current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
                             print("stack setelah proses input: ", stack)  # debug
-                    elif count_petik == 2:
-                        count_petik = 0 
-                        if input:
-                            if input not in in_atribut:
-                                input = "*"
-                            current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                    current_state, stack = process_input_symbols(current_state, char, stack, productions)    
-                    input = ""   
-                elif (char == '$' or (char == '_' and count_underscore == 0 and comment)) and not inside_tag:
-                    if char == '$':
-                        comment = True
-                    if char == '_':
-                        count_underscore += 1
-                    input = char
-                    print("input:", input) # debug
-                    current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                    print("stack setelah proses input: ", stack) # debug
-                elif char == '_' and count_underscore == 1 and not inside_tag:
-                    input = '*'
-                    print("string dalam komen") # debug
-                    current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                    input = char
-                    print("proses _ kedua komen") # debug
-                    current_state, stack = process_input_symbols(current_state, char, stack, productions)
-                else: 
-                    input += char
-            elif (input == '_' and count_underscore == 1 and char == '>' and not inside_tag):
-                count_underscore = 0
-                print("proses > tutup komen") # debug
-                current_state, stack = process_input_symbols(current_state, char, stack, productions)
-                input = ""
-            elif (char == '>' and inside_tag):
-                inside_tag = False
-                if input:
-                    print("input:", input) # debug
-                    current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                    print("stack setelah proses input: ", stack)   # debug             
-                current_state, stack = process_input_symbols(current_state, char, stack, productions)
-                print("current state: ", current_state) # debug
-                input = ""
+                        input = char
+                    elif char == '"' and inside_tag:
+                        count_petik += 1
+                        if count_petik == 1:
+                            if input:
+                                print("input:", input) # debug
+                                if found_production:
+                                    current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
+                                print("stack setelah proses input: ", stack)  # debug
+                        elif count_petik == 2:
+                            count_petik = 0 
+                            if input:
+                                if input not in in_atribut:
+                                    input = "*"
+                                if found_production:
+                                    current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
+                        if found_production: 
+                            current_state, stack, found_production = process_input_symbols(current_state, char, stack, productions, found_production)    
+                        input = ""   
+                    elif (char == '$' or (char == '_' and count_underscore == 0 and comment)) and not inside_tag:
+                        if char == '$':
+                            comment = True
+                        if char == '_':
+                            count_underscore += 1
+                        input = char
+                        print("input:", input) # debug
+                        if found_production:
+                            current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
+                        print("stack setelah proses input: ", stack) # debug
+                    elif char == '_' and count_underscore == 1 and not inside_tag:
+                        input = '*'
+                        print("string dalam komen") # debug
+                        if found_production:
+                            current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
+                        input = char
+                        print("proses _ kedua komen") # debug
+                        if found_production:
+                            current_state, stack, found_production = process_input_symbols(current_state, char, stack, productions, found_production)
+                    else: 
+                        input += char
+                elif (input == '_' and count_underscore == 1 and char == '>' and not inside_tag):
+                    count_underscore = 0
+                    print("proses > tutup komen") # debug
+                    if found_production:
+                        current_state, stack, found_production = process_input_symbols(current_state, char, stack, productions, found_production)
+                    input = ""
+                elif (char == '>' and inside_tag):
+                    inside_tag = False
+                    if input:
+                        print("input:", input) # debug
+                        if found_production:
+                            current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
+                        print("stack setelah proses input: ", stack)   # debug             
+                    if found_production:
+                        current_state, stack, found_production = process_input_symbols(current_state, char, stack, productions, found_production)
+                    print("current state: ", current_state) # debug
+                    input = ""
+                
+                print(i) # debug
+                i += 1
             
-            print(i) # debug
-            i += 1
-        
-        if inside_tag:
-            print("< tidak ditutup")
-        else:
-            if input:
-                print("Terdapat string bebas setelah '>' terakhir")
+            if inside_tag:
+                print("< tidak ditutup")
+            else:
+                if input:
+                    print("Terdapat string bebas setelah '>' terakhir")
 
     # Cek final state
     if current_state in accepting_states:
@@ -223,6 +238,29 @@ def evaluate_html_with_pda(html_code, pda_definition):
         return False
 
 def main():
+
+    print("                                             Halo Kakak Asisten")
+    print("")
+    print("                             88888888888   888888b.     8888888888    .d88888b. ")
+    print("                                 888       888  '88b    888          d88P' 'Y88b ")
+    print("                                 888       888  .88P    8888888      888     888 ")
+    print("                                 888       8888888K.    888          888     888 ")
+    print("                                 888       888   Y88b   888          888     888 ")
+    print("                                 888       888    888   888          888     888 ")
+    print("                                 888       888   d88P   888          Y88b. .d88P  ")
+    print("                                 888       8888888P'    888           'Y88888P'  ")
+    print("")
+    print("                                                Kami (dari)")
+    print("")
+    print("888b     d888                                888               888       888                                           ")
+    print("8888b   d8888                          888   888               888   o   888                                           ")
+    print("88888b.d88888                                888               888  d8b  888                                           ")
+    print("888Y88888P888     8888b.   .d8888b     888   88888b.           888 d888b 888    8888b.    888d888     8888b.   .d8888b")
+    print("888 Y888P 888       '88b   88K         888   888 '88b          888d88888b888       '88b   888P'         '88b   88K     ")
+    print("888  Y8P  888   .d888888   'Y8888b.    888   888  888          88888P Y88888   .d888888   888       .d888888   'Y8888b.")
+    print("888   '   888   888  888        X88    888   888  888          8888P   Y8888   888  888   888       888  888        X88")
+    print("888       888   'Y888888    88888P'    888   888  888          888P     Y888   'Y888888   888       'Y888888    88888P'")
+
     if len(sys.argv) != 3:
         print("Usage: python html_checker.py <pda_definition_file> <html_file>")
         sys.exit(1)

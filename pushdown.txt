@@ -1,0 +1,513 @@
+html head inhead chead body cbody chtml finish # total states
+< > c d c1 d1 f g h f1 g1 h1 # input word symbols
+0 F G H U V W X Y Z 0 < > e # stack symbols
+html # stack symbols
+0 # starting stack
+finish # accepting states
+F # accepting by final state
+html < 0 html Z0
+html c Z html YZ
+html > Y head XY
+head < X head WX
+head d W head VW
+head > V head UV
+head < U head TU
+head d1 TU chead e
+head f T inhead FT
+head g T inhead GT
+head h T inhead HT
+inhead > F inhead >F
+inhead > H inhead >H
+inhead b2 G inhead 5G # atribut wajib rel dalam link
+inhead " 5 inhead +5
+inhead " + inhead e
+inhead > 5GT head e
+inhead < > inhead e
+inhead f1 F inhead e
+inhead g1 G inhead e
+inhead h1 H inhead e
+inhead > T head e
+chead > VW body e
+body < X body FX
+body e F body EF
+body > E body DE
+body < D body CD
+body e1 CD cbody e
+cbody > EF chtml e
+chtml < X chtml e
+chtml c1 Y chmtl e
+chtml > Z finish e
+
+body u C inbody UC # boleh di dalam div
+inbody > U inbody >U
+inbody < > inbody <>
+inbody u1 <>U inbody e
+inbody > C body e
+inbody a < inbody A<
+inbody > A inbody >A
+inbody a1 <>A inbody e
+
+
+
+inbody b U inbody BU
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody g U inbody GU
+inbody > G inbody ^G
+inbody < ^G inbody e
+inbody h U inbody HU
+inbody > H inbody >H
+inbody h1 H inbody e
+inbody i U inbody IU
+inbody > I inbody >I
+inbody i1 I inbody e
+inbody j U inbody JU
+inbody > J inbody >J
+inbody j1 J inbody e
+inbody k U inbody KU
+inbody > K inbody >K
+inbody k1 K inbody e
+inbody l U inbody LU
+inbody > L inbody >L
+inbody l1 L inbody e
+inbody m U inbody MU
+inbody > M inbody >M
+inbody m1 M inbody e
+inbody n U inbody NU
+inbody > N inbody >N
+inbody n1 N inbody e
+inbody o U inbody OU
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody p U inbody PU
+inbody > P inbody >P
+inbody p1 P inbody e
+inbody q U inbody QU
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r U inbody RU
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s U inbody SU
+inbody > S inbody >S
+inbody s1 S inbody e
+inbody t U inbody TU
+inbody > T inbody ^T
+inbody < ^T inbody e
+inbody u U inbody UU
+inbody > U inbody >U
+inbody u1 U inbody e
+inbody v U inbody VU
+inbody > V inbody ^V
+inbody < ^V inbody e
+inbody w U inbody WU
+inbody > W inbody >W
+inbody w1 W inbody e
+inbody x U inbody XU
+inbody > X inbody >X
+inbody x1 X inbody e
+inbody y U inbody YU
+inbody > Y inbody ^Y
+inbody < ^Y inbody e
+inbody z U inbody ZU
+inbody > Z inbody >Z
+inbody z1 Z inbody e
+
+body x C inbody XC # boleh di dalam form
+inbody > X inbody >X
+inbody < > inbody e
+inbody x1 X inbody e
+inbody > C body e
+inbody a X inbody AX
+inbody > A inbody >A
+inbody a1 A inbody e
+inbody b X inbody BX
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody g X inbody AX
+inbody > G inbody ^G
+inbody < ^G inbody e
+inbody h X inbody HX
+inbody > H inbody >H
+inbody h1 H inbody e
+inbody i X inbody IX
+inbody > I inbody >I
+inbody i1 I inbody e
+inbody j X inbody JX
+inbody > J inbody >J
+inbody j1 J inbody e
+inbody k X inbody KX
+inbody > K inbody >K
+inbody k1 K inbody e
+inbody l X inbody LX
+inbody > L inbody >L
+inbody l1 L inbody e
+inbody m X inbody MX
+inbody > M inbody >M
+inbody m1 M inbody e
+inbody n X inbody NX
+inbody > N inbody >N
+inbody n1 N inbody e
+inbody o X inbody OX
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody p X inbody PX
+inbody > P inbody >P
+inbody p1 P inbody e
+inbody q X inbody QX
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r X inbody RX
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s X inbody SX
+inbody > S inbody >S
+inbody s1 S inbody e
+inbody t X inbody TX
+inbody > T inbody ^T
+inbody < ^T inbody e
+inbody u X inbody UX
+inbody > U inbody >U
+inbody u1 U inbody e
+inbody v X inbody VX
+inbody > V inbody ^V
+inbody < ^V inbody e
+inbody w X inbody WX
+inbody > W inbody >W
+inbody w1 W inbody e
+inbody y X inbody YX
+inbody > Y inbody ^Y
+inbody < ^Y inbody e
+inbody z X inbody ZX
+inbody > Z inbody >Z
+inbody z1 Z inbody e
+inbody x X trash XX
+
+body z C inbody ZC # boleh di dalam table, dalam tr
+inbody > Z inbody >Z
+inbody < > inbody e
+inbody z1 Z inbody e
+inbody > C body e
+inbody aa Z inbody 1Z
+inbody > 1 inbody >1
+inbody aa1 1 inbody e
+inbody ab 1 inbody 21
+inbody > 2 inbody >2
+inbody ab1 2 inbody e
+inbody ac 1 inbody 31
+inbody > 3 inbody >3
+inbody ac1 3 inbody e
+
+body a C inbody AC # boleh di dalam a (b, abbr, em, strong, small)
+inbody > A inbody >A
+inbody < > inbody e
+inbody a1 A inbody e
+inbody > C body e
+inbody b A inbody BA
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o A inbody OA
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q A inbody QA
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r A inbody RA
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s A inbody SA
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body h C inbody HC # boleh di dalam script (b, abbr, em, strong, small)
+inbody > H inbody >H
+inbody < > inbody e
+inbody h1 H inbody e
+inbody > C body e
+inbody b H inbody BH
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o H inbody OH
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q H inbody QH
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r H inbody RH
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s H inbody SH
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body i C inbody IC # boleh di dalam h1 (b, abbr, em, strong, small)
+inbody > I inbody >I
+inbody < > inbody e
+inbody i1 I inbody e
+inbody > C body e
+inbody b I inbody BI
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o I inbody OI
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q I inbody QI
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r I inbody RI
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s I inbody SI
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body j C inbody JC # boleh di dalam h2 (b, abbr, em, strong, small)
+inbody > J inbody >J
+inbody < > inbody e
+inbody j1 J inbody e
+inbody > C body e
+inbody b J inbody BJ
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o J inbody OJ
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q J inbody QJ
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r J inbody RJ
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s J inbody SJ
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body k C inbody KC # boleh di dalam h3 (b, abbr, em, strong, small)
+inbody > K inbody >K
+inbody < > inbody e
+inbody k1 K inbody e
+inbody > C body e
+inbody b K inbody BK
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o K inbody OK
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q K inbody QK
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r K inbody RK
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s K inbody SK
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body l C inbody LC # boleh di dalam h4 (b, abbr, em, strong, small)
+inbody > L inbody >L
+inbody < > inbody e
+inbody l1 L inbody e
+inbody > C body e
+inbody b L inbody BL
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o L inbody OL
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q L inbody QL
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r L inbody RL
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s L inbody SL
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body m C inbody MC # boleh di dalam h5 (b, abbr, em, strong, small)
+inbody > M inbody >M
+inbody < > inbody e
+inbody m1 M inbody e
+inbody > C body e
+inbody b M inbody BM
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o M inbody OM
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q M inbody QM
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r M inbody RM
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s M inbody SM
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body n C inbody NC # boleh di dalam h6 (b, abbr, em, strong, small)
+inbody > N inbody >N
+inbody < > inbody e
+inbody n1 N inbody e
+inbody > C body e
+inbody b N inbody BN
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o N inbody ON
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q N inbody QN
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r N inbody RN
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s N inbody SN
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body p C inbody PC # boleh di dalam p (b, abbr, em, strong, small)
+inbody > P inbody >P
+inbody < > inbody e
+inbody p1 P inbody e
+inbody > C body e
+inbody b P inbody BP
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o P inbody OP
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q P inbody QP
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r P inbody RP
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s P inbody SP
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body w C inbody WC # boleh di dalam button (b, abbr, em, strong, small)
+inbody > W inbody >W
+inbody < > inbody e
+inbody w1 W inbody e
+inbody > C body e
+inbody b W inbody BW
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o W inbody OW
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q W inbody QW
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r W inbody RW
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s W inbody SW
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body ab C inbody 2C # boleh di dalam td (b, abbr, em, strong, small)
+inbody > 2 inbody >2
+inbody < > inbody e
+inbody ab1 2 inbody e
+inbody > C body e
+inbody b 2 inbody B2
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o 2 inbody O2
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q 2 inbody Q2
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r 2 inbody R2
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s 2 inbody S2
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body ac C inbody 3C # boleh di dalam th (b, abbr, em, strong, small)
+inbody > 3 inbody >3
+inbody < > inbody e
+inbody ac1 3 inbody e
+inbody > C body e
+inbody b 3 inbody B3
+inbody > B inbody >B
+inbody b1 B inbody e
+inbody o 3 inbody O3
+inbody > O inbody >O
+inbody o1 O inbody e
+inbody q 3 inbody Q3
+inbody > Q inbody >Q
+inbody q1 Q inbody e
+inbody r 3 inbody R3
+inbody > R inbody >R
+inbody r1 R inbody e
+inbody s 3 inbody S3
+inbody > S inbody >S
+inbody s1 S inbody e
+
+body g C inbody GC # boleh di dalam body 
+
+
+inhead c2 G inhead 6G # atribut href dalam link
+inhead c2 5 inhead 65
+inhead " 6 inhead "6
+inhead " "6 inhead e
+inhead d2 H inhead 5H # atribut src dalam script
+
+inbody b2 G inbody 5G # atribut rel href dalam link
+inbody " 5 inbody "5
+inbody " "5 inbody e
+inbody c2 G inbody 6G
+inbody " 6 inbody "6
+inbody " "6 inbody e
+inbody d2 H inbody 5H # atribut src dalam script
+inbody c2 A inbody 6A # atribut href dalam a
+inbody d2 V inbody 5V # atribut src, alt dalam img
+inbody e2 V inbody 6V
+inbody f2 W inbody 5W # atribut type dalam button
+inbody g2 X inbody 7X # atribut action method dalam form
+inbody h2 X inbody 8X
+inbody " 7 inbody "7
+inbody " "7 inbody e
+inbody " 8 inbody "8
+inbody " "8 inbody e
+
+inbody " 4 inbody "4 # atribut id class style
+inbody " "4 inbody e
+inbody a2 A inbody 4A
+inbody a2 B inbody 4B
+inbody a2 C inbody 4C
+inbody a2 D inbody 4D
+inbody a2 E inbody 4E
+inbody a2 F inbody 4F
+inbody a2 G inbody 4G
+inbody a2 H inbody 4H
+inbody a2 I inbody 4I
+inbody a2 J inbody 4J
+inbody a2 K inbody 4K
+inbody a2 L inbody 4L
+inbody a2 M inbody 4M
+inbody a2 N inbody 4N
+inbody a2 O inbody 4O
+inbody a2 P inbody 4P
+inbody a2 Q inbody 4Q
+inbody a2 R inbody 4R
+inbody a2 S inbody 4S
+inbody a2 T inbody 4T
+inbody a2 U inbody 4U
+inbody a2 V inbody 4V
+inbody a2 W inbody 4W
+inbody a2 X inbody 4X
+inbody a2 Y inbody 4Y
+inbody a2 Z inbody 4Z
+inbody a2 1 inbody 41
+inbody a2 2 inbody 42
+inbody a2 3 inbody 43
+
+
+

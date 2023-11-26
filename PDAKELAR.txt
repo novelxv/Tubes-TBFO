@@ -1,4 +1,4 @@
-html chtml head chead body cbody title link1 link2 script1 script2 1head1 1head2 1head3 1head4 1head5 1head6 paragraph brhr em1 em2 em3 em4 em5 em6 em7 em8 em9 em10 em11 em12 em13 em14 em15 bold1 bold2 bold3 bold4 bold5 bold6 bold7 bold8 bold9 bold10 bold11 bold12 bold13 bold14 bold15 abbr1 abbr2 abbr3 abbr4 abbr5 abbr6 abbr7 abbr8 abbr9 abbr10 abbr11 abbr12 abbr13 abbr14 abbr15 strong1 strong2 strong3 strong4 strong5 strong6 strong7 strong8 strong9 strong10 strong11 strong12 strong13 strong14 strong15 small1 small2 small3 small4 small5 small6 small7 small8 small9 small10 small11 small12 small13 small14 small15 div1 div2 div3 div4 div5 hyper image button form input table tr td th comment finish # total states
+html chtml head chead body cbody title link1 link2 link3 link4 script1 script2 1head1 1head2 1head3 1head4 1head5 1head6 paragraph brhr brhr1 brhr2 em1 em2 em3 em4 em5 em6 em7 em8 em9 em10 em11 em12 em13 em14 em15 bold1 bold2 bold3 bold4 bold5 bold6 bold7 bold8 bold9 bold10 bold11 bold12 bold13 bold14 bold15 abbr1 abbr2 abbr3 abbr4 abbr5 abbr6 abbr7 abbr8 abbr9 abbr10 abbr11 abbr12 abbr13 abbr14 abbr15 strong1 strong2 strong3 strong4 strong5 strong6 strong7 strong8 strong9 strong10 strong11 strong12 strong13 strong14 strong15 small1 small2 small3 small4 small5 small6 small7 small8 small9 small10 small11 small12 small13 small14 small15 div1 div2 div3 div4 div5 hyper image image1 image2 button form input inpu1 input2 table tr td th comment finish # total states
 a b c d e f g h i j k l m n o p q r s t u v w x y z aa ab ac a1 b1 c1 d1 e1 f1 h1 i1 j1 k1 l1 m1 n1 o1 p1 q1 r1 s1 u1 w1 x1 z1 aa1 ab1 ac1 2a 2b 2c 2d 2f 2g 2h e3 w3 x3 y3 < > " $ _ * # input word symbols
 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 0 < > [ ] ( ) { } ^ % ~ + " $ _ e # stack symbols
 html # starting state
@@ -792,7 +792,7 @@ brhr " "4 brhr e
 brhr > T< body e
 body v < image V<  # image di dalam body beserta atribut src alt, id, class, style
 image 2a V image 4V
-image 2a 5 link 45
+image 2a 5 image 45
 image " 4 image "4
 image * " image "
 image " "4 image e
@@ -814,7 +814,7 @@ input 2f Y input 7Y
 input " 7 input %7
 input y3 % input ~%
 input " ~%7 input e
-input > < body e
+input > Y< body e
 body z < table Z< # table, tr, td, th
 table 2a Y table 4Y
 table " 4 table "4
@@ -1062,11 +1062,7 @@ form x1 (>X form e
 form > < body e
 form u ( div1 U( # div dalam form
 div3 > ( form e
-div2 g ^ link2 G^ # tag yang boleh dalam div
-link2 > 5G^ div2 e
-div2 g C link2 GC
-link2 > 5GC div2 e
-div2 h ^ script2 H^
+div2 h ^ script2 H^ # tag yang boleh dalam div dan bukan void
 script2 > ^ div2 e
 div2 h C script2 HC
 script2 > C div2 e
@@ -1122,14 +1118,6 @@ div2 p ^ paragraph P^
 paragraph > ^ div2 e
 div2 p C paragraph PC
 paragraph > C div2 e
-div2 t ^ brhr T^
-brhr > T^ div2 e
-div2 t C brhr TC
-brhr > TC div2 e
-div2 v ^ image V^
-image > 5V^ div2 e
-div2 v C image VC
-image > 5VC div2 e
 div2 w ^ button W^
 button > ^ div2 e
 div2 w C button WC
@@ -1138,17 +1126,11 @@ div2 x ^ form X^
 form > ^ div2 e
 div2 x C form XC
 form > C div2 e
-div2 y ^ input Y^
-input > ^ div2 e
-div2 y C input YC
-input > C div2 e
 div2 z ^ table Z^
 table > ^ div2 e
 div2 z C table ZC
-table > C div2 e
-form g ( link2 G( # tag yang boleh dalam form
-link2 > 5G( form e
-form h ( script2 H(
+table > C div2 e 
+form h ( script2 H( # tag yang boleh dalam form dan bukan void
 script2 > ( form e
 form i ( 1head1 I(
 1head1 > ( form e
@@ -1176,14 +1158,8 @@ form s ( small11 S(
 small11 > ( form e
 form p ( paragraph P(
 paragraph > ( form e
-form t ( brhr T(
-brhr > T( form e
-form v ( image V(
-image > 5V( form e
 form w ( button W(
 button > ( form e
-form y ( input Y(
-input > ( form e
 form z ( table Z(
 table > ( form e
 comment _ $ comment _$ # state ketika terdapat komentar
@@ -1397,3 +1373,103 @@ td $ > comment $>
 comment > $ td e
 th $ > comment $>
 comment > $ th e
+form g ( link3 G(  # link di dalam form beserta atribut rel href, id, class, style
+link3 2a G link3 4G
+link3 2a 5 link3 45
+link3 " 4 link3 "4
+link3 * " link3 "
+link3 " "4 link3 e
+link3 2b G link3 5G
+link3 " 5 link3 +5
+link3 * + link3 +
+link3 " + link3 e
+link3 2c G link3 6G
+link3 2c 5 link3 65
+link3 " 6 link3 "6
+link3 " "6 link3 e
+link3 > 5G( form e
+form t ( brhr1 T( # tag br, hr, dalam tag form, atribut global
+brhr1 2a R brhr1 4T
+brhr1 " 4 brhr1 "4
+brhr1 * " brhr1 "
+brhr1 " "4 brhr1 e
+brhr1 > T( form e
+form v ( image1 V(  # image1 di dalam form beserta atribut src alt, id, class, style
+image1 2a V image1 4V
+image1 2a 5 image1 45
+image1 " 4 image1 "4
+image1 * " image1 "
+image1 " "4 image1 e
+image1 2d V image1 5V
+image1 " 5 image1 +5
+image1 * + image1 +
+image1 " + image1 e
+image1  V image1 6V
+image1  5 image1 65
+image1 " 6 image1 "6
+image1 " "6 image1 e
+image1 > 5V( form e
+form y ( input1 Y(  # input1 di dalam form beserta atribut type, id, class, style
+input1 2a Y input1 4Y
+input1 " 4 input1 "4
+input1 * " input1 "
+input1 " "4 input1 e
+input1 2f Y input1 7Y
+input1 " 7 input1 %7
+input1 y3 % input1 ~%
+input1 " ~%7 input1 e
+input1 > Y( form e
+div2 g C link4 GC  # link di dalam div2 beserta atribut rel href, id, class, style
+div2 g ^ link4 G^
+link4 2a G link4 4G
+link4 2a 5 link4 45
+link4 " 4 link4 "4
+link4 * " link4 "
+link4 " "4 link4 e
+link4 2b G link4 5G
+link4 " 5 link4 +5
+link4 * + link4 +
+link4 " + link4 e
+link4 2c G link4 6G
+link4 2c 5 link4 65
+link4 " 6 link4 "6
+link4 " "6 link4 e
+link4 > 5GC div2 e
+link4 > 5G^ div2 e
+div2 t C brhr2 TC # tag br, hr, dalam tag div2, atribut global
+div2 t ^ brhr2 T^
+brhr2 2a R brhr2 4T
+brhr2 " 4 brhr2 "4
+brhr2 * " brhr2 "
+brhr2 " "4 brhr2 e
+brhr2 > TC div2 e
+brhr2 > T^ div2 e
+div2 v C image2 VC
+div2 v ^ image2 V^  # image2 di dalam div2 beserta atribut src alt, id, class, style
+image2 2a V image2 4V
+image2 2a 5 image2 45
+image2 " 4 image2 "4
+image2 * " image2 "
+image2 " "4 image2 e
+image2 2d V image2 5V
+image2 " 5 image2 +5
+image2 * + image2 +
+image2 " + image2 e
+image2  V image2 6V
+image2  5 image2 65
+image2 " 6 image2 "6
+image2 " "6 image2 e
+image2 > 5VC div2 e
+image2 > 5V^ div2 e
+div2 y C input2 YC  # input2 di dalam div2 beserta atribut type, id, class, style
+div2 y ^ input2 Y^
+input2 2a Y input2 4Y
+input2 " 4 input2 "4
+input2 * " input2 "
+input2 " "4 input2 e
+input2 2f Y input2 7Y
+input2 " 7 input2 %7
+input2 y3 % input2 ~%
+input2 " ~%7 input2 e
+input2 > YC div2 e
+input2 > Y^ div2 e

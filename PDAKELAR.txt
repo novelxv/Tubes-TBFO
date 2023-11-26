@@ -160,9 +160,9 @@ small2 s1 S small2 e
 small2 > < script1 e
 head d1 <)D chead e
 chead > ( body e
-body < ] body ]{
+body < ] body {]
 body e3 { body E{
-body 2a B body 4B
+body 2a E body 4E
 body " 4 body "4
 body * " body "
 body " "4 body e
@@ -960,6 +960,7 @@ button * " button "
 button " "4 button e
 button 2f W button 8W
 button " 8 button %8
+button w % button ~%
 button w3 % button ~%
 button " ~%8 button e
 button > w button >W

@@ -52,6 +52,7 @@ def convert_html_symbols(html_code):
         '/h5': 'm1', 'h5': 'm',
         '/h6': 'n1', 'h6': 'n',
         '/script': 'h1', 'script': 'h',
+        'email': 'y3',
         '/em': 'o1', 'em': 'o',
         '/p': 'p1',
         '/abbr': 'q1', 'abbr': 'q',
@@ -74,7 +75,7 @@ def convert_html_symbols(html_code):
         ' action=': '2g', 'submit': 'w3',
         'reset': 'w3', 'GET': 'x3',
         'POST': 'x3', 'text': 'y3', 'password': 'y3',
-        'email': 'y3', 'number': 'y3', 'checkbox': 'y3',
+        'number': 'y3', 'checkbox': 'y3',
         '<!' : '$', '--' : '_',
         '/a': 'a1', '”' : '"'
     }
@@ -82,7 +83,6 @@ def convert_html_symbols(html_code):
     converted_code = html_code
     for original_symbol, new_symbol in symbol_mapping.items():
         converted_code = converted_code.replace(original_symbol, new_symbol)
-    print(converted_code) # debug
     return converted_code
 
 def reverse_convert_html_symbol(input_symbol):
@@ -133,16 +133,13 @@ def reverse_convert_html_symbol(input_symbol):
 
 def process_input_symbols(current_state, input, stack, productions, found_production):
     found_production = False
-    print(f"current_state: {current_state}, input: {input}, top_stack: {stack[0]}")
     for production in productions:
         if (
             production[0] == current_state and
             (production[1] == input or production[1] == 'e') and
             production[2][0] == stack[0]
         ):
-            print("masuk") # debug
             current_state = production[3]
-            print("curr state: ", current_state) # debug
 
             if production[2] != production[4]:
                 if production[1] != 'e':
@@ -154,13 +151,18 @@ def process_input_symbols(current_state, input, stack, productions, found_produc
                                 stack.pop(0)
                     else:
                         stack.insert(0, production[4][0])
-            print(stack) # debug
             
             found_production = True
             break
 
     if not found_production:
-        html_symbol = reverse_convert_html_symbol(input)
+        if input == '*':
+            html_symbol = 'string'
+        else:
+            html_symbol = reverse_convert_html_symbol(input)
+            if html_symbol == "":
+                html_symbol = 'teks random'
+        print(f"Syntax Error at state '{current_state}'")
         print(f"Syntax Error at character '{html_symbol}'")
 
     return current_state, stack, found_production
@@ -178,8 +180,6 @@ def evaluate_html_with_pda(html_code, pda_definition):
     stack = [start_stack[0]]
     found_production = True
     
-    print("STACK\n", stack[0]) # debug
-
     if (html_code[0] != "<"):
         print("Kode HTML harus diawali '<'")
     else:
@@ -192,12 +192,9 @@ def evaluate_html_with_pda(html_code, pda_definition):
 
         if found_production:
             for char in html_code:
-                # >|sss $ _ * _ > sss|<      debug
-                # print(f"current_state: {current_state}, char: {char}, input: {input}, stack: {stack}")
                 if (char == '<' and not inside_tag):
                     if i != 0 and input:
                         input = '*'
-                        print("input:", input) # debug
                         if found_production:
                             current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
                     inside_tag = True
@@ -207,19 +204,15 @@ def evaluate_html_with_pda(html_code, pda_definition):
                 elif (char != '>'): 
                     if char == '2' and inside_tag:
                         if input:
-                            print("input:", input) # debug
                             if found_production:
                                 current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
-                            print("stack setelah proses input: ", stack)  # debug
                         input = char
                     elif char == '"' and inside_tag:
                         count_petik += 1
                         if count_petik == 1:
                             if input:
-                                print("input:", input) # debug
                                 if found_production:
                                     current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
-                                print("stack setelah proses input: ", stack)  # debug
                         elif count_petik == 2:
                             count_petik = 0 
                             if input:
@@ -236,37 +229,29 @@ def evaluate_html_with_pda(html_code, pda_definition):
                         if char == '_':
                             count_underscore += 1
                         input = char
-                        print("input:", input) # debug
                         if found_production:
                             current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
-                        print("stack setelah proses input: ", stack) # debug
                     elif char == '_' and count_underscore == 1 and not inside_tag:
                         input = '*'
-                        print("string dalam komen") # debug
                         if found_production:
                             current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
                         input = char
-                        print("proses _ kedua komen") # debug
                         if found_production:
                             current_state, stack, found_production = process_input_symbols(current_state, char, stack, productions, found_production)
                     else: 
                         input += char
                 elif (input == '_' and count_underscore == 1 and char == '>' and not inside_tag):
                     count_underscore = 0
-                    print("proses > tutup komen") # debug
                     if found_production:
                         current_state, stack, found_production = process_input_symbols(current_state, char, stack, productions, found_production)
                     input = ""
                 elif (char == '>' and inside_tag):
                     inside_tag = False
                     if input:
-                        print("input:", input) # debug
                         if found_production:
                             current_state, stack, found_production = process_input_symbols(current_state, input, stack, productions, found_production)
-                        print("stack setelah proses input: ", stack)   # debug             
                     if found_production:
                         current_state, stack, found_production = process_input_symbols(current_state, char, stack, productions, found_production)
-                    print("current state: ", current_state) # debug
                     input = ""
                 
                 i += 1

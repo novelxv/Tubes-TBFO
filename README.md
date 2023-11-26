@@ -3,6 +3,10 @@
 ## General Information
 HTML Checker with Pushdown Automata
 
+## How to Run
+```bash
+pyhton html_checker.py
+
 ## Member List
 
 |          Nama           |    NIM   |
@@ -37,3 +41,5 @@ HTML Checker with Pushdown Automata
   │   └─ 11a.html
   │   └─ inputAcc.html
   │   └─ inputReject.html
+  │   └─ mastering.html
+

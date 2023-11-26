@@ -75,6 +75,47 @@ def convert_html_symbols(html_code):
         converted_code = converted_code.replace(original_symbol, new_symbol)
     print(converted_code)
     return converted_code
+
+# current_state = '0'
+
+def process_input_symbols(current_state, input, stack, productions):
+    found_production = False
+    for production in productions:
+        if (
+            production[0] == current_state and
+            (production[1] == input or production[1] == 'e') and
+            production[2][0] == stack[0]
+        ):
+            print("masuk")
+            # print(production[4])
+            current_state = production[3]
+            print("curr state: ", current_state)
+            # stack.pop(0)
+            # print(stack)
+            # print("Setelah pop", stack)
+            if production[1] != 'e':
+                if production[4] == 'e':
+                    stack.pop(0)
+                    if len(production[2]):
+                        stack.pop(0)
+                else:
+                    stack.insert(0, production[4][0])
+            print(stack)
+            # if production[4] != 'e':
+            #     # stack.extend(list(production[4]))
+            #     # print(stack)
+            #     for symbol in production[4]:
+            #         stack.insert(-1, symbol)
+            #     print(stack)
+            
+            found_production = True
+            break
+    # print(i)
+    # i += 1
+    if not found_production:
+        print(f"Syntax Error at character '{input}'")
+        # return False
+    return current_state, stack
     
 def evaluate_html_with_pda(html_code, pda_definition):
     # Mengevaluasi kode HTML dengan menggunakan PDA
@@ -91,43 +132,32 @@ def evaluate_html_with_pda(html_code, pda_definition):
     stack = [start_stack[0]]
     print("STACK\n", stack[0])
     i = 0
-    for char in html_code:
-        found_production = False
-        print(f"current_state: {current_state}, char: {char}, stack: {stack}")
-        for production in productions:
-            # print(production)
-            # print(f"curr_state: {production[0]}, readfw: {production[1]}, takefs: {production[2]}")
-            if (
-                production[0] == current_state and
-                (production[1] == char or production[1] == 'e') and
-                production[2] == stack[0]
-            ):
-                print("masuk")
-                # print(production[4])
-                current_state = production[3]
-                # stack.pop(0)
-                # print(stack)
-                # print("Setelah pop", stack)
-                if production[1] != 'e':
-                    if production[4] == 'e':
-                        stack.pop(0)
-                    else:
-                        stack.insert(0, production[4][0])
-                print(stack)
-                # if production[4] != 'e':
-                #     # stack.extend(list(production[4]))
-                #     # print(stack)
-                #     for symbol in production[4]:
-                #         stack.insert(-1, symbol)
-                #     print(stack)
-                
-                found_production = True
-                break
-        print(i)
-        i += 1
-        if not found_production:
-            print(f"Syntax Error at character '{char}'")
-            return False
+    if (html_code[0] != "<"):
+        print("Salah Bro")
+    else:
+        input = ""
+        inside_tag = False
+        for char in html_code:
+            print(f"current_state: {current_state}, char: {char}, input: {input}, stack: {stack}")
+            if (char == '<' and not inside_tag):
+                inside_tag = True
+                current_state, stack = process_input_symbols(current_state, char, stack, productions)
+                input = ""
+            elif (char != '>'):
+                input += char
+            elif (char == '>' and inside_tag):
+                inside_tag = False
+                print("input: ", input)
+                current_state, stack = process_input_symbols(current_state, input, stack, productions)
+                # print("current state: ", current_state)                
+                current_state, stack = process_input_symbols(current_state, char, stack, productions)
+                print("current state: ", current_state)
+                input = ""
+            print(i)
+            i += 1
+        
+        if input:
+            print("< tidak ditutup")
 
     # Cek final state
     if current_state in accepting_states:

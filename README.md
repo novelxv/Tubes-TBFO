@@ -5,7 +5,8 @@ HTML Checker with Pushdown Automata
 
 ## How to Run
 ```bash
-pyhton html_checker.py
+python html_checker.py
+```
 
 ## Member List
 
@@ -42,4 +43,3 @@ pyhton html_checker.py
   │   └─ inputAcc.html
   │   └─ inputReject.html
   │   └─ mastering.html
-

@@ -87,7 +87,9 @@ def convert_html_symbols(html_code):
         '/abbr': 'q1', 'abbr': 'q',
         '/strong': 'r1', 'strong': 'r',
         '/small': 's1', 'small': 's',
-        'br': 't', 'hr': 't',
+        'br': 't', 
+        ' href=' : '2c',
+        'hr': 't',
         '/div': 'u1', 'div': 'u',
         'img': 'v', 
         '/form': 'x1', 'form': 'x',
@@ -97,7 +99,7 @@ def convert_html_symbols(html_code):
         ' method=': '2h',
         '/th': 'ac1', 'th': 'ac',
         ' id=': '2a', ' class=': '2a',
-        ' style=': '2a', ' rel=': '2b', ' href=': '2c',
+        ' style=': '2a', ' rel=': '2b',
         ' src=': '2d', ' alt=': '2e', ' type=': '2f',
         ' action=': '2g', 'submit': 'w3',
         'reset': 'w3', 'GET': 'x3',
@@ -133,15 +135,14 @@ def process_input_symbols(current_state, input, stack, productions):
             # stack.pop(0)
             # print(stack)
             # print("Setelah pop", stack)
-            if production[1] != 'e':
-                if production[1] != '*':
+            if production[2] != production[4]:
+                if production[1] != 'e':
                     if production[4] == 'e':
                         stack.pop(0)
                         if len(production[2]) > 1:
                             stack.pop(0)
                             if len(production[2]) == 3:
                                 stack.pop(0)
-
                     else:
                         stack.insert(0, production[4][0])
             print(stack)
@@ -188,8 +189,11 @@ def evaluate_html_with_pda(html_code, pda_definition):
         input = ""
         inside_tag = False
         count_petik = 0
+        count_underscore = 0
+        comment = False
         i = 0
         for char in html_code:
+            # >|sss $ _ * _ > sss|<
             # print(f"current_state: {current_state}, char: {char}, input: {input}, stack: {stack}")
             if (char == '<' and not inside_tag):
                 if i != 0 and input:
@@ -220,9 +224,30 @@ def evaluate_html_with_pda(html_code, pda_definition):
                                 input = "*"
                             current_state, stack = process_input_symbols(current_state, input, stack, productions)
                     current_state, stack = process_input_symbols(current_state, char, stack, productions)    
-                    input = ""                
+                    input = ""   
+                elif (char == '$' or (char == '_' and count_underscore == 0 and comment)) and not inside_tag:
+                    if char == '$':
+                        comment = True
+                    if char == '_':
+                        count_underscore += 1
+                    input = char
+                    print("input:", input)
+                    current_state, stack = process_input_symbols(current_state, input, stack, productions)
+                    print("stack setelah proses input: ", stack) 
+                elif char == '_' and count_underscore == 1 and not inside_tag:
+                    input = '*'
+                    print("string dalam komen")
+                    current_state, stack = process_input_symbols(current_state, input, stack, productions)
+                    input = char
+                    print("proses _ kedua komen")
+                    current_state, stack = process_input_symbols(current_state, char, stack, productions)
                 else: 
                     input += char
+            elif (input == '_' and count_underscore == 1 and char == '>' and not inside_tag):
+                count_underscore = 0
+                print("proses > tutup komen")
+                current_state, stack = process_input_symbols(current_state, char, stack, productions)
+                input = ""
             elif (char == '>' and inside_tag):
                 inside_tag = False
                 if input:

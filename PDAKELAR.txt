@@ -1020,6 +1020,7 @@ small13 s1 S small13 e
 small13 > < button e
 body u < div1 U< # div dalam div dalam div dalam div .... infinite, dengan atribut global
 div1 > U div1 >U
+div1 * > div1 >
 div1 2a U div1 4U
 div1 " 4 div1 "4
 div1 * " div1 "
@@ -1031,6 +1032,7 @@ div3 > < body e
 div2 u ^ div4 U^
 div2 u C div4 UC
 div4 > U div4 >U
+div4 * > div4 >
 div4 2a U div4 4U
 div4 " 4 div4 "4
 div4 * " div4 "

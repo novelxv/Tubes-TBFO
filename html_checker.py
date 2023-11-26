@@ -148,7 +148,7 @@ def evaluate_html_with_pda(html_code, pda_definition):
                 if i != 0 and input:
                     input = '*'
                     print("input:", input) # debug
-                    process_input_symbols(current_state, input, stack, productions)
+                    current_state, stack = process_input_symbols(current_state, input, stack, productions)
                 inside_tag = True
                 current_state, stack = process_input_symbols(current_state, char, stack, productions)
                 input = ""

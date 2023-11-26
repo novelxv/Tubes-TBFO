@@ -963,7 +963,7 @@ button " 8 button %8
 button w % button ~%
 button w3 % button ~%
 button " ~%8 button e
-button > w button >W
+button > W button >W
 button * > button >
 button < > button <>
 button w1 <>W button e

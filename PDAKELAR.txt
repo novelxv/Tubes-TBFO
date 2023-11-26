@@ -1746,8 +1746,8 @@ image2 2d V image2 5V
 image2 " 5 image2 +5
 image2 * + image2 +
 image2 " + image2 e
-image2  V image2 6V
-image2  5 image2 65
+image2 2e V image2 6V
+image2 2e 5 image2 65
 image2 " 6 image2 "6
 image2 " "6 image2 e
 image2 > 5VC div2 e

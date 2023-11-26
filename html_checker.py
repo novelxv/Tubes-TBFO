@@ -71,7 +71,8 @@ def convert_html_symbols(html_code):
 
         '/html': 'c1', 'html': 'c',
         '/head': 'd1', 'head': 'd',
-        '/body': 'e1', '/b': 'b1', 'body': 'e3', 
+        '/body': 'e1', '/button': 'w1', 'button' : 'w',
+        '/b': 'b1', 'body': 'e3', 
         '/title': 'f1', 'title': 'f',
         'link': 'g',
         '/h1': 'i1', 'h1': 'i',
@@ -89,21 +90,21 @@ def convert_html_symbols(html_code):
         'br': 't', 'hr': 't',
         '/div': 'u1', 'div': 'u',
         'img': 'v', 
-        '/button': 'w1', 'button': 'w',
         '/form': 'x1', 'form': 'x',
         'input': 'y', '/table': 'z1', 'table': 'z',
         '/tr': 'aa1', 'tr': 'aa',
         '/td': 'ab1', 'td': 'ab',
+        ' method=': '2h',
         '/th': 'ac1', 'th': 'ac',
         ' id=': '2a', ' class=': '2a',
         ' style=': '2a', ' rel=': '2b', ' href=': '2c',
         ' src=': '2d', ' alt=': '2e', ' type=': '2f',
-        ' action=': '2g', ' method=': '2h', 'submit': 'l3',
-        'reset': 'l3', 'button': 'l3', 'GET': 'm3',
-        'POST': 'm3', 'text': 'n3', 'password': 'n3',
-        'email': 'n3', 'number': 'n3', 'checkbox': 'n3',
+        ' action=': '2g', 'submit': 'w3',
+        'reset': 'w3', 'GET': 'x3',
+        'POST': 'x3', 'text': 'y3', 'password': 'y3',
+        'email': 'y3', 'number': 'y3', 'checkbox': 'y3',
         '<!' : '$', '--' : '_',
-        '/a': 'a1', 
+        '/a': 'a1', '”' : '"'
     }
 
     converted_code = html_code
@@ -136,13 +137,10 @@ def process_input_symbols(current_state, input, stack, productions):
                 if production[1] != '*':
                     if production[4] == 'e':
                         stack.pop(0)
-                        if len(production[2]) == 2:
+                        if len(production[2]) > 1:
                             stack.pop(0)
-                        elif len(production[2]) == 3:
-                            stack.pop(0)
-                            print("STACKKKKKK:", stack)
-                            stack.pop(0)
-                            print("STACK POP 3X:", stack)
+                            if len(production[2]) == 3:
+                                stack.pop(0)
 
                     else:
                         stack.insert(0, production[4][0])
@@ -174,8 +172,7 @@ def evaluate_html_with_pda(html_code, pda_definition):
     accept_condition = pda_definition['accept_condition']
     productions = pda_definition['productions']
     
-    # input_symbols_bawaan = ['"', 'a', 'b', 'p']
-    # in_atribut = []
+    in_atribut = ['w', 'w3', 'x3', 'y3']
 
     current_state = start_state[0]
     stack = [start_stack[0]]
@@ -203,13 +200,13 @@ def evaluate_html_with_pda(html_code, pda_definition):
                 current_state, stack = process_input_symbols(current_state, char, stack, productions)
                 input = ""
             elif (char != '>'): 
-                if char == '2':
+                if char == '2' and inside_tag:
                     if input:
                         print("input:", input)
                         current_state, stack = process_input_symbols(current_state, input, stack, productions)
                         print("stack setelah proses input: ", stack)  
                     input = char
-                elif char == '"':
+                elif char == '"' and inside_tag:
                     count_petik += 1
                     if count_petik == 1:
                         if input:
@@ -219,7 +216,8 @@ def evaluate_html_with_pda(html_code, pda_definition):
                     elif count_petik == 2:
                         count_petik = 0 
                         if input:
-                            input = "*"
+                            if input not in in_atribut:
+                                input = "*"
                             current_state, stack = process_input_symbols(current_state, input, stack, productions)
                     current_state, stack = process_input_symbols(current_state, char, stack, productions)    
                     input = ""                

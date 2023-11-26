@@ -269,7 +269,6 @@ def evaluate_html_with_pda(html_code, pda_definition):
                     print("current state: ", current_state) # debug
                     input = ""
                 
-                print(i) # debug
                 i += 1
             
             if inside_tag:
@@ -308,15 +307,16 @@ def main():
     print("888   '   888   888  888        X88    888   888  888          8888P   Y8888   888  888   888       888  888        X88")
     print("888       888   'Y888888    88888P'    888   888  888          888P     Y888   'Y888888   888       'Y888888    88888P'")
 
-    if len(sys.argv) != 3:
-        print("Usage: python html_checker.py <pda_definition_file> <html_file>")
+    if len(sys.argv) != 1:
+        print("Usage: python html_checker.py")
         sys.exit(1)
 
-    pda_definition_file = sys.argv[1]
-    html_file = sys.argv[2]
+    pda_definition_file = "PDAKELAR.txt"
+    html_file = input("\n\nMasukkan file HTML yang ingin dicek: ")
+    html_file_path = f"test/{html_file}"
 
     pda_definition = read_pda_definition(pda_definition_file)
-    html_code = read_html_code(html_file)
+    html_code = read_html_code(html_file_path)
     html_code = convert_html_symbols(html_code)
     result = evaluate_html_with_pda(html_code, pda_definition)
 

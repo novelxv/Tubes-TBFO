@@ -85,6 +85,52 @@ def convert_html_symbols(html_code):
     print(converted_code) # debug
     return converted_code
 
+def reverse_convert_html_symbol(input_symbol):
+    # Konversi kembali ke simbol html
+    reverse_mapping = {
+        'c1': '/html', 'c': 'html',
+        'd1': '/head', 'd': 'head',
+        'e1': '/body', 'w1': '/button', 'w': 'button',
+        'b1': '/b', 'e3': 'body',
+        'f1': '/title', 'f': 'title',
+        'g': 'link',
+        'i1': '/h1', 'i': 'h1',
+        'j1': '/h2', 'j': 'h2',
+        'k1': '/h3', 'k': 'h3',
+        'l1': '/h4', 'l': 'h4',
+        'm1': '/h5', 'm': 'h5',
+        'n1': '/h6', 'n': 'h6',
+        'h1': '/script', 'h': 'script',
+        'o1': '/em', 'o': 'em',
+        'p1': '/p',
+        'q1': '/abbr', 'q': 'abbr',
+        'r1': '/strong', 'r': 'strong',
+        's1': '/small', 's': 'small',
+        't': 'br',
+        '2c': ' href=',
+        't': 'hr',
+        'u1': '/div', 'u': 'div',
+        'v': 'img',
+        'x1': '/form', 'x': 'form',
+        'y': 'input', 'z1': '/table', 'z': 'table',
+        'aa1': '/tr', 'aa': 'tr',
+        'ab1': '/td', 'ab': 'td',
+        '2h': ' method=',
+        'ac1': '/th', 'ac': 'th',
+        '2a': ' id=', '2a': ' class=',
+        '2a': ' style=', '2b': ' rel=',
+        '2d': ' src=', '2e': ' alt=', '2f': ' type=',
+        '2g': ' action=', 'w3': 'submit',
+        'w3': 'reset', 'x3': 'GET',
+        'x3': 'POST', 'y3': 'text', 'y3': 'password',
+        'y3': 'email', 'y3': 'number', 'y3': 'checkbox',
+        '$': '<!', '_': '--',
+        'a1': '/a', '"': '”'
+    }
+
+    original_symbol = reverse_mapping.get(input_symbol, '')
+    return original_symbol
+
 def process_input_symbols(current_state, input, stack, productions, found_production):
     found_production = False
     print(f"current_state: {current_state}, input: {input}, top_stack: {stack[0]}")
@@ -114,7 +160,8 @@ def process_input_symbols(current_state, input, stack, productions, found_produc
             break
 
     if not found_production:
-        print(f"Syntax Error at character '{input}'")
+        html_symbol = reverse_convert_html_symbol(input)
+        print(f"Syntax Error at character '{html_symbol}'")
 
     return current_state, stack, found_production
     
@@ -222,7 +269,6 @@ def evaluate_html_with_pda(html_code, pda_definition):
                     print("current state: ", current_state) # debug
                     input = ""
                 
-                print(i) # debug
                 i += 1
             
             if inside_tag:
@@ -261,15 +307,16 @@ def main():
     print("888   '   888   888  888        X88    888   888  888          8888P   Y8888   888  888   888       888  888        X88")
     print("888       888   'Y888888    88888P'    888   888  888          888P     Y888   'Y888888   888       'Y888888    88888P'")
 
-    if len(sys.argv) != 3:
-        print("Usage: python html_checker.py <pda_definition_file> <html_file>")
+    if len(sys.argv) != 1:
+        print("Usage: python html_checker.py")
         sys.exit(1)
 
-    pda_definition_file = sys.argv[1]
-    html_file = sys.argv[2]
+    pda_definition_file = "PDAKELAR.txt"
+    html_file = input("\n\nMasukkan file HTML yang ingin dicek: ")
+    html_file_path = f"test/{html_file}"
 
     pda_definition = read_pda_definition(pda_definition_file)
-    html_code = read_html_code(html_file)
+    html_code = read_html_code(html_file_path)
     html_code = convert_html_symbols(html_code)
     result = evaluate_html_with_pda(html_code, pda_definition)
 

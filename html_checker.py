@@ -30,7 +30,7 @@ def read_pda_definition(file_path):
 
 def read_html_code(file_path):
     # Membaca kode HTML dari file eksternal
-    with open(file_path, 'r') as file:
+    with open(file_path, 'r', encoding='utf-8') as file:
         lines = file.readlines()
     # Menghapus karakter newline dan menggabungkan baris
     html_code = ''.join(line.strip() for line in lines)
@@ -39,35 +39,71 @@ def read_html_code(file_path):
 def convert_html_symbols(html_code):
     # Mengonversi simbol-simbol dalam HTML
     symbol_mapping = {
-        '/html' : 'c1', 'html' : 'c', 
-        '/head' : 'd1', 'head' : 'd',
-        '/body' : 'e1', 'body' : 'e3',
-        '/title' : 'f1', 'title' : 'f',
-        'link' : 'g', 
-        '/h1' : 'i1', 'h1' : 'i',
-        '/h2' : 'j1', 'h2' : 'j',
-        '/h3' : 'k1', 'h3' : 'k',
-        '/h4' : 'l1', 'h4' : 'l',
-        '/h5' : 'm1', 'h5' : 'm',
-        '/h6' : 'n1', 'h6' : 'n',
-        '/script' : 'h1', 'script' : 'h',
-        'em' : 'o', 'abbr' : 'q', 'strong' : 'r',
-        'small' : 's', 'br' : 't', 'hr' : 't',
-        'div' : 'u', 'img' : 'v', 'button' : 'w',
-        'form' : 'x', 'input' : 'y', 'table' : 'z',
-        'tr' : 'aa', 'td' : 'ab', 'th' : 'ac',
-        '/a' : 'a1', '/b' : 'b1', 
-        '/em' : 'o1', '/p' : 'p1',
-        '/abbr' : 'q1', '/strong' : 'r1', '/small' : 's1',
-        '/div' : 'u1', '/button' : 'w1', '/form' : '/x1',
-        '/table' : 'z1', '/tr' : 'aa1', '/td' : 'ab1', 
-        '/th' : 'ac1', 'id=' : 'a2', 'class=' : 'a2',
-        'style=' : 'a2', 'rel=' : 'b2', 'href=' : 'c2',
-        'src=' : 'd2', 'alt=' : 'e2', 'type=' : 'f2',
-        'action=' : 'g2', 'method=' : 'h2', 'submit' : 'l3',
-        'reset' : 'l3', 'button' : 'l3', 'GET' : 'm3', 
-        'POST' : 'm3', 'text' : 'n3', 'password' : 'n3',
-        'email' : 'n3', 'number' : 'n3', 'checkbox' : 'n3', 
+        # '/html' : 'c1', 'html' : 'c', 
+        # '/head' : 'd1', 'head' : 'd',
+        # '/body' : 'e1', 'body' : 'e3',
+        # '/title' : 'f1', 'title' : 'f',
+        # 'link' : 'g', 
+        # '/h1' : 'i1', 'h1' : 'i',
+        # '/h2' : 'j1', 'h2' : 'j',
+        # '/h3' : 'k1', 'h3' : 'k',
+        # '/h4' : 'l1', 'h4' : 'l',
+        # '/h5' : 'm1', 'h5' : 'm',
+        # '/h6' : 'n1', 'h6' : 'n',
+        # '/script' : 'h1', 'script' : 'h',
+        # 'em' : 'o', 'abbr' : 'q', 'strong' : 'r',
+        # 'small' : 's', 'br' : 't', 'hr' : 't',
+        # 'div' : 'u', 'img' : 'v', 'button' : 'w',
+        # 'form' : 'x', 'input' : 'y', 'table' : 'z',
+        # 'tr' : 'aa', 'td' : 'ab', 'th' : 'ac',
+        # '/a' : 'a1', '/b' : 'b1', 
+        # '/em' : 'o1', '/p' : 'p1',
+        # '/abbr' : 'q1', '/strong' : 'r1', '/small' : 's1',
+        # '/div' : 'u1', '/button' : 'w1', '/form' : '/x1',
+        # '/table' : 'z1', '/tr' : 'aa1', '/td' : 'ab1', 
+        # '/th' : 'ac1', 'id=' : 'a2', 'class=' : 'a2',
+        # 'style=' : 'a2', 'rel=' : 'b2', 'href=' : 'c2',
+        # 'src=' : 'd2', 'alt=' : 'e2', 'type=' : 'f2',
+        # 'action=' : 'g2', 'method=' : 'h2', 'submit' : 'l3',
+        # 'reset' : 'l3', 'button' : 'l3', 'GET' : 'm3', 
+        # 'POST' : 'm3', 'text' : 'n3', 'password' : 'n3',
+        # 'email' : 'n3', 'number' : 'n3', 'checkbox' : 'n3', 
+
+        '/html': 'c1', 'html': 'c',
+        '/head': 'd1', 'head': 'd',
+        '/body': 'e1', '/b': 'b1', 'body': 'e3', 
+        '/title': 'f1', 'title': 'f',
+        'link': 'g',
+        '/h1': 'i1', 'h1': 'i',
+        '/h2': 'j1', 'h2': 'j',
+        '/h3': 'k1', 'h3': 'k',
+        '/h4': 'l1', 'h4': 'l',
+        '/h5': 'm1', 'h5': 'm',
+        '/h6': 'n1', 'h6': 'n',
+        '/script': 'h1', 'script': 'h',
+        '/em': 'o1', 'em': 'o',
+        '/p': 'p1',
+        '/abbr': 'q1', 'abbr': 'q',
+        '/strong': 'r1', 'strong': 'r',
+        '/small': 's1', 'small': 's',
+        'br': 't', 'hr': 't',
+        '/div': 'u1', 'div': 'u',
+        'img': 'v', 
+        '/button': 'w1', 'button': 'w',
+        '/form': 'x1', 'form': 'x',
+        'input': 'y', '/table': 'z1', 'table': 'z',
+        '/tr': 'aa1', 'tr': 'aa',
+        '/td': 'ab1', 'td': 'ab',
+        '/th': 'ac1', 'th': 'ac',
+        ' id=': '2a', ' class=': '2a',
+        ' style=': '2a', ' rel=': '2b', ' href=': '2c',
+        ' src=': '2d', ' alt=': '2e', ' type=': '2f',
+        ' action=': '2g', ' method=': '2h', 'submit': 'l3',
+        'reset': 'l3', 'button': 'l3', 'GET': 'm3',
+        'POST': 'm3', 'text': 'n3', 'password': 'n3',
+        'email': 'n3', 'number': 'n3', 'checkbox': 'n3',
+        '<!' : '$', '--' : '_',
+        '/a': 'a1', 
     }
 
     converted_code = html_code
@@ -82,6 +118,7 @@ def process_input_symbols(current_state, input, stack, productions):
     found_production = False
     print(f"current_state: {current_state}, input: {input}, top_stack: {stack[0]}")
     for production in productions:
+        # print(production[0])
         # print(f"current_state: {production[0]}, char: {production[1]}, top_stack: {production[2][0]}")
         if (
             production[0] == current_state and
@@ -96,12 +133,19 @@ def process_input_symbols(current_state, input, stack, productions):
             # print(stack)
             # print("Setelah pop", stack)
             if production[1] != 'e':
-                if production[4] == 'e':
-                    stack.pop(0)
-                    if len(production[2]) == 2:
+                if production[1] != '*':
+                    if production[4] == 'e':
                         stack.pop(0)
-                else:
-                    stack.insert(0, production[4][0])
+                        if len(production[2]) == 2:
+                            stack.pop(0)
+                        elif len(production[2]) == 3:
+                            stack.pop(0)
+                            print("STACKKKKKK:", stack)
+                            stack.pop(0)
+                            print("STACK POP 3X:", stack)
+
+                    else:
+                        stack.insert(0, production[4][0])
             print(stack)
             # if production[4] != 'e':
             #     # stack.extend(list(production[4]))
@@ -129,37 +173,75 @@ def evaluate_html_with_pda(html_code, pda_definition):
     accepting_states = pda_definition['accepting_states']
     accept_condition = pda_definition['accept_condition']
     productions = pda_definition['productions']
+    
+    # input_symbols_bawaan = ['"', 'a', 'b', 'p']
+    # in_atribut = []
 
     current_state = start_state[0]
     stack = [start_stack[0]]
+    
+    # for production in productions:
+        # print(production)
+
     print("STACK\n", stack[0])
-    i = 0
+    # i = 0
     if (html_code[0] != "<"):
         print("Salah Bro")
     else:
         input = ""
         inside_tag = False
+        count_petik = 0
+        i = 0
         for char in html_code:
-            print(f"current_state: {current_state}, char: {char}, input: {input}, stack: {stack}")
+            # print(f"current_state: {current_state}, char: {char}, input: {input}, stack: {stack}")
             if (char == '<' and not inside_tag):
+                if i != 0 and input:
+                    input = '*'
+                    print("input:", input)
+                    process_input_symbols(current_state, input, stack, productions)
                 inside_tag = True
                 current_state, stack = process_input_symbols(current_state, char, stack, productions)
                 input = ""
-            elif (char != '>'):
-                input += char
+            elif (char != '>'): 
+                if char == '2':
+                    if input:
+                        print("input:", input)
+                        current_state, stack = process_input_symbols(current_state, input, stack, productions)
+                        print("stack setelah proses input: ", stack)  
+                    input = char
+                elif char == '"':
+                    count_petik += 1
+                    if count_petik == 1:
+                        if input:
+                            print("input:", input)
+                            current_state, stack = process_input_symbols(current_state, input, stack, productions)
+                            print("stack setelah proses input: ", stack) 
+                    elif count_petik == 2:
+                        count_petik = 0 
+                        if input:
+                            input = "*"
+                            current_state, stack = process_input_symbols(current_state, input, stack, productions)
+                    current_state, stack = process_input_symbols(current_state, char, stack, productions)    
+                    input = ""                
+                else: 
+                    input += char
             elif (char == '>' and inside_tag):
                 inside_tag = False
-                print("input: ", input)
-                current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                print("stack setelah proses input: ", stack)                
+                if input:
+                    print("input:", input)
+                    current_state, stack = process_input_symbols(current_state, input, stack, productions)
+                    print("stack setelah proses input: ", stack)                
                 current_state, stack = process_input_symbols(current_state, char, stack, productions)
                 print("current state: ", current_state)
                 input = ""
+            
             print(i)
             i += 1
         
+        # if inside tag -> salahhh
         if input:
-            print("< tidak ditutup")
+            print("< tidak ditutup") # kalau inside
+        # kalau outside berarti <sada>input 
 
     # Cek final state
     if current_state in accepting_states:

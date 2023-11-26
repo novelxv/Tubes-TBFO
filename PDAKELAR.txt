@@ -1058,7 +1058,7 @@ form " ~%9 form e
 form < > form (>
 form x1 (>X form e
 form > < body e
-form u ( div1 u( # div dalam form
+form u ( div1 U( # div dalam form
 div3 > ( form e
 div2 g ^ link2 G^ # tag yang boleh dalam div
 link2 > 5G^ div2 e

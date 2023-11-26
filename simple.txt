@@ -1,0 +1,35 @@
+html < 0 html [<
+html c [ html C[
+html a2 C html 4C
+html " 4 html "4
+html * " html "
+html " "4 html e
+html > C head ]C
+head < ] head (]
+head d ( head D(
+head a2 D head 4D
+head " 4 head "4
+head * " head "
+head " "4 head e
+head > D head )D
+head < ) head <)
+head d1 <)D chead e
+chead > ( body e
+body < ] body ]{
+body e { body E{
+body a2 B body 4B
+body " 4 body "4
+body * " body "
+body " "4 body e
+body > E body }E
+body < } body <}
+body e1 <}E cbody e
+cbody > { chtml e
+chtml < ] chtml e
+chtml c1 C chtml e
+chtml > [ finish e
+
+<html id="bebas">
+    <head>
+    </head>
+</html>

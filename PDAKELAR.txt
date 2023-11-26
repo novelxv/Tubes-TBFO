@@ -1,0 +1,1555 @@
+html chtml head chead body cbody title link1 link2 script1 script2 1head1 1head2 1head3 1head4 1head5 1head6 paragraph brhr 
+em1 em2 em3 em4 em5 em6 em7 em8 em9 em10 em11 em12 em13 em14 em15 
+bold1 bold2 bold3 bold4 bold5 bold6 bold7 bold8 bold9 bold10 bold11 bold12 bold13 bold14 bold15 
+abbr1 abbr2 abbr3 abbr4 abbr5 abbr6 abbr7 abbr8 abbr9 abbr10 abbr11 abbr12 abbr13 abbr14 abbr15 
+strong1 strong2 strong3 strong4 strong5 strong6 strong7 strong8 strong9 strong10 strong11 strong12 strong13 strong14 strong15
+small1 small2 small3 small4 small5 small6 small7 small8 small9 small10 small11 small12 small13 small14 small15 
+div1 div2 div3 div4 div5 hyper image button form input table tr td th comment finish # total states
+a b c d e f g h i j k l m n o p q r s t u v w x y z aa ab ac a1 b1 c1 d1 e1 f1 h1 i1 j1 k1 l1 m1 n1 o1 p1 q1 r1 s1 u1 w1 x1 z1 aa1 ab1 ac1 a2 b2 c2 d2 e2 f2 g2 h2 e3 w3 x3 y3 < > " $ _ * # input word symbols
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 0 < > [ ] ( ) { } ^ % ~ + " $ _ e # stack symbols
+html # starting state
+0 # starting stack
+finish # accepting states
+F # accepting by final state
+
+html < 0 html [<
+html c [ html C[
+html a2 C html 4C
+html " 4 html "4
+html * " html "
+html " "4 html e
+html > C head ]C
+head < ] head (]
+head d ( head D(
+head a2 D head 4D
+head " 4 head "4
+head * " head "
+head " "4 head e
+head > D head )D
+head < ) head <)
+
+head f < title F< # title dalam head beserta atribut id, class, style
+title a2 F title 4F
+title " 4 title "4
+title * " title "
+title " "4 title e
+title > F title >F 
+title * > title >
+title < > title <>
+title f1 <>F title e
+title > < head e
+
+head g < link1 G<  # link di dalam head beserta atribut rel href, id, class, style
+link1 a2 G link1 4G
+link1 a2 5 link1 45
+link1 " 4 link1 "4
+link1 * " link1 "
+link1 " "4 link1 e
+link1 b2 G link1 5G
+link1 " 5 link1 +5
+link1 * + link1 +
+link1 " + link1 e
+link1 c2 G link1 6G
+link1 c2 5 link1 65
+link1 " 6 link1 "6
+link1 " "6 link1 e
+link1 > 5G< head e
+
+head h < script1 H< # script dalam head beserta atribut src
+script1 a2 H script1 4H
+script1 " 4 script1 "4
+script1 * " script1 "
+script1 " "4 script1 e
+script1 d2 H script1 5H
+script1 " 5 script1 "5
+script1 " "5 script1 e
+script1 > H script1 >H 
+script1 * > script1 >
+script1 < > script1 <>
+script1 h1 <>H script1 e
+script1 > < head e
+
+title b < bold1 B< # tag element formatting untuk tag title
+bold1 > B bold1 >B
+bold1 a2 B bold1 4B
+bold1 " 4 bold1 "4
+bold1 * " bold1 "
+bold1 " "4 bold1 e
+bold1 * > bold1 >
+bold1 < > bold1 e
+bold1 b1 B bold1 e
+bold1 > < title e
+
+title o < em1 O<
+em1 > O em1 >O
+em1 a2 O em1 4O
+em1 " 4 em1 "4
+em1 * " em1 "
+em1 " "4 em1 e
+em1 * > em1 >
+em1 < > em1 e
+em1 o1 O em1 e
+em1 > < title e
+
+title q < abbr1 Q<
+abbr1 > Q abbr1 >Q
+abbr1 a2 Q abbr1 4Q
+abbr1 " 4 abbr1 "4
+abbr1 * " abbr1 "
+abbr1 " "4 abbr1 e
+abbr1 * > abbr1 >
+abbr1 < > abbr1 e
+abbr1 q1 Q abbr1 e
+abbr1 > < title e
+
+title r < strong1 R<
+strong1 > R strong1 >R
+strong1 a2 R strong1 4R
+strong1 " 4 strong1 "4
+strong1 * " strong1 "
+strong1 " "4 strong1 e
+strong1 * > strong1 >
+strong1 < > strong1 e
+strong1 r1 R strong1 e
+strong1 > < title e
+
+title s < small1 S<
+small1 > S small1 >S
+small1 a2 S small1 4S
+small1 " 4 small1 "4
+small1 * " small1 "
+small1 " "4 small1 e
+small1 * > small1 >
+small1 < > small1 e
+small1 s1 S small1 e
+small1 > < title e
+
+script1 b < bold2 B< # tag element formatting untuk tag script
+bold2 > B bold2 >B
+bold2 a2 B bold2 4B
+bold2 " 4 bold2 "4
+bold2 * " bold2 "
+bold2 " "4 bold2 e
+bold2 * > bold2 >
+bold2 < > bold2 e
+bold2 b1 B bold2 e
+bold2 > < script1 e
+
+script1 o < em2 O<
+em2 > O em2 >O
+em2 a2 O em2 4O
+em2 " 4 em2 "4
+em2 * " em2 "
+em2 " "4 em2 e
+em2 * > em2 >
+em2 < > em2 e
+em2 o1 O em2 e
+em2 > < script1 e
+
+script1 q < abbr2 Q<
+abbr2 > Q abbr2 >Q
+abbr2 a2 Q abbr2 4Q
+abbr2 " 4 abbr2 "4
+abbr2 * " abbr2 "
+abbr2 " "4 abbr2 e
+abbr2 * > abbr2 >
+abbr2 < > abbr2 e
+abbr2 q1 Q abbr2 e
+abbr2 > < script1 e
+
+script1 r < strong2 R<
+strong2 > R strong2 >R
+strong2 a2 R strong2 4R
+strong2 " 4 strong2 "4
+strong2 * " strong2 "
+strong2 " "4 strong2 e
+strong2 * > strong2 >
+strong2 < > strong2 e
+strong2 r1 R strong2 e
+strong2 > < script1 e
+
+script1 s < small2 S<
+small2 > S small2 >S
+small2 a2 S small2 4S
+small2 " 4 small2 "4
+small2 * " small2 "
+small2 " "4 small2 e
+small2 * > small2 >
+small2 < > small2 e
+small2 s1 S small2 e
+small2 > < script1 e
+
+head d1 <)D chead e
+chead > ( body e
+body < ] body ]{
+body e3 { body E{
+body a2 B body 4B
+body " 4 body "4
+body * " body "
+body " "4 body e
+body > E body }E
+body < } body <}
+body e1 <}E cbody e
+cbody > { chtml e
+chtml < ] chtml e
+chtml c1 C chtml e
+chtml > [ finish e
+
+body g < link2 G<  # link di dalam body beserta atribut rel href, id, class, style
+link2 a2 G link2 4G
+link2 a2 5 link2 45
+link2 " 4 link2 "4
+link2 * " link2 "
+link2 " "4 link2 e
+link2 b2 G link2 5G
+link2 " 5 link2 +5
+link2 * + link2 +
+link2 " + link2 e
+link2 c2 G link2 6G
+link2 c2 5 link2 65
+link2 " 6 link2 "6
+link2 " "6 link2 e
+link2 > 5G< body e
+
+body h < script2 H< # script dalam body beserta atribut src
+script2 a2 H script2 4H
+script2 " 4 script2 "4
+script2 * " script2 "
+script2 " "4 script2 e
+script2 d2 H script2 5H
+script2 " 5 script2 "5
+script2 " "5 script2 e
+script2 > H script2 >H 
+script2 * > script2 >
+script2 < > script2 <>
+script2 h1 <>H script2 e
+script2 > < body e
+
+script2 b < bold3 B< # tag element formatting untuk tag script
+bold3 > B bold3 >B
+bold3 a2 B bold3 4B
+bold3 " 4 bold3 "4
+bold3 * " bold3 "
+bold3 " "4 bold3 e
+bold3 * > bold3 >
+bold3 < > bold3 e
+bold3 b1 B bold3 e
+bold3 > < script2 e
+
+script2 o < em3 O<
+em3 > O em3 >O
+em3 a2 O em3 4O
+em3 " 4 em3 "4
+em3 * " em3 "
+em3 " "4 em3 e
+em3 * > em3 >
+em3 < > em3 e
+em3 o1 O em3 e
+em3 > < script2 e
+
+script2 q < abbr3 Q<
+abbr3 > Q abbr3 >Q
+abbr3 a2 Q abbr3 4Q
+abbr3 " 4 abbr3 "4
+abbr3 * " abbr3 "
+abbr3 " "4 abbr3 e
+abbr3 * > abbr3 >
+abbr3 < > abbr3 e
+abbr3 q1 Q abbr3 e
+abbr3 > < script2 e
+
+script2 r < strong3 R<
+strong3 > R strong3 >R
+strong3 a2 R strong3 4R
+strong3 " 4 strong3 "4
+strong3 * " strong3 "
+strong3 " "4 strong3 e
+strong3 * > strong3 >
+strong3 < > strong3 e
+strong3 r1 R strong3 e
+strong3 > < script2 e
+
+script2 s < small3 S<
+small3 > S small3 >S
+small3 a2 S small3 4S
+small3 " 4 small3 "4
+small3 * " small3 "
+small3 " "4 small3 e
+small3 * > small3 >
+small3 < > small3 e
+small3 s1 S small3 e
+small3 > < script2 e
+
+body i < 1head1 I< # h1 dalam body beserta atribut src
+1head1 a2 I 1head1 4I
+1head1 " 4 1head1 "4
+1head1 * " 1head1 "
+1head1 " "4 1head1 e
+1head1 > I 1head1 >I 
+1head1 * > 1head1 >
+1head1 < > 1head1 <>
+1head1 i1 <>I 1head1 e
+1head1 > < body e
+
+1head1 b < bold4 B< # tag element formatting untuk tag script
+bold4 > B bold4 >B
+bold4 a2 B bold4 4B
+bold4 " 4 bold4 "4
+bold4 * " bold4 "
+bold4 " "4 bold4 e
+bold4 * > bold4 >
+bold4 < > bold4 e
+bold4 b1 B bold4 e
+bold4 > < 1head1 e
+
+1head1 o < em4 O<
+em4 > O em4 >O
+em4 a2 O em4 4O
+em4 " 4 em4 "4
+em4 * " em4 "
+em4 " "4 em4 e
+em4 * > em4 >
+em4 < > em4 e
+em4 o1 O em4 e
+em4 > < 1head1 e
+
+1head1 q < abbr4 Q<
+abbr4 > Q abbr4 >Q
+abbr4 a2 Q abbr4 4Q
+abbr4 " 4 abbr4 "4
+abbr4 * " abbr4 "
+abbr4 " "4 abbr4 e
+abbr4 * > abbr4 >
+abbr4 < > abbr4 e
+abbr4 q1 Q abbr4 e
+abbr4 > < 1head1 e
+
+1head1 r < strong4 R<
+strong4 > R strong4 >R
+strong4 a2 R strong4 4R
+strong4 " 4 strong4 "4
+strong4 * " strong4 "
+strong4 " "4 strong4 e
+strong4 * > strong4 >
+strong4 < > strong4 e
+strong4 r1 R strong4 e
+strong4 > < 1head1 e
+
+1head1 s < small4 S<
+small4 > S small4 >S
+small4 a2 S small4 4S
+small4 " 4 small4 "4
+small4 * " small4 "
+small4 " "4 small4 e
+small4 * > small4 >
+small4 < > small4 e
+small4 s1 S small4 e
+small4 > < 1head1 e
+
+body j < 1head2 J< # h2 dalam body beserta atrJbut src
+1head2 a2 J 1head2 4J
+1head2 " 4 1head2 "4
+1head2 * " 1head2 "
+1head2 " "4 1head2 e
+1head2 > J 1head2 >J 
+1head2 * > 1head2 >
+1head2 < > 1head2 <>
+1head2 j1 <>J 1head2 e
+1head2 > < body e
+
+1head2 b < bold5 B< # tag element formatting untuk tag script
+bold5 > B bold5 >B
+bold5 a2 B bold5 4B
+bold5 " 4 bold5 "4
+bold5 * " bold5 "
+bold5 " "4 bold5 e
+bold5 * > bold5 >
+bold5 < > bold5 e
+bold5 b1 B bold5 e
+bold5 > < 1head2 e
+
+1head2 o < em5 O<
+em5 > O em5 >O
+em5 a2 O em5 4O
+em5 " 4 em5 "4
+em5 * " em5 "
+em5 " "4 em5 e
+em5 * > em5 >
+em5 < > em5 e
+em5 o1 O em5 e
+em5 > < 1head2 e
+
+1head2 q < abbr5 Q<
+abbr5 > Q abbr5 >Q
+abbr5 a2 Q abbr5 4Q
+abbr5 " 4 abbr5 "4
+abbr5 * " abbr5 "
+abbr5 " "4 abbr5 e
+abbr5 * > abbr5 >
+abbr5 < > abbr5 e
+abbr5 q1 Q abbr5 e
+abbr5 > < 1head2 e
+
+1head2 r < strong5 R<
+strong5 > R strong5 >R
+strong5 a2 R strong5 4R
+strong5 " 4 strong5 "4
+strong5 * " strong5 "
+strong5 " "4 strong5 e
+strong5 * > strong5 >
+strong5 < > strong5 e
+strong5 r1 R strong5 e
+strong5 > < 1head2 e
+
+1head2 s < small5 S<
+small5 > S small5 >S
+small5 a2 S small5 4S
+small5 " 4 small5 "4
+small5 * " small5 "
+small5 " "4 small5 e
+small5 * > small5 >
+small5 < > small5 e
+small5 s1 S small5 e
+small5 > < 1head2 e
+
+body k < 1head3 K< # h3 dalam body beserta atribut src
+1head3 a2 K 1head3 4K
+1head3 " 4 1head3 "4
+1head3 * " 1head3 "
+1head3 " "4 1head3 e
+1head3 > K 1head3 >K 
+1head3 * > 1head3 >
+1head3 < > 1head3 <>
+1head3 k1 <>K 1head3 e
+1head3 > < body e
+
+1head3 b < bold6 B< # tag element formatting untuk tag script
+bold6 > B bold6 >B
+bold6 a2 B bold6 4B
+bold6 " 4 bold6 "4
+bold6 * " bold6 "
+bold6 " "4 bold6 e
+bold6 * > bold6 >
+bold6 < > bold6 e
+bold6 b1 B bold6 e
+bold6 > < 1head3 e
+
+1head3 o < em6 O<
+em6 > O em6 >O
+em6 a2 O em6 4O
+em6 " 4 em6 "4
+em6 * " em6 "
+em6 " "4 em6 e
+em6 * > em6 >
+em6 < > em6 e
+em6 o1 O em6 e
+em6 > < 1head3 e
+
+1head3 q < abbr6 Q<
+abbr6 > Q abbr6 >Q
+abbr6 a2 Q abbr6 4Q
+abbr6 " 4 abbr6 "4
+abbr6 * " abbr6 "
+abbr6 " "4 abbr6 e
+abbr6 * > abbr6 >
+abbr6 < > abbr6 e
+abbr6 q1 Q abbr6 e
+abbr6 > < 1head3 e
+
+1head3 r < strong6 R<
+strong6 > R strong6 >R
+strong6 a2 R strong6 4R
+strong6 " 4 strong6 "4
+strong6 * " strong6 "
+strong6 " "4 strong6 e
+strong6 * > strong6 >
+strong6 < > strong6 e
+strong6 r1 R strong6 e
+strong6 > < 1head3 e
+
+1head3 s < small6 S<
+small6 > S small6 >S
+small6 a2 S small6 4S
+small6 " 4 small6 "4
+small6 * " small6 "
+small6 " "4 small6 e
+small6 * > small6 >
+small6 < > small6 e
+small6 s1 S small6 e
+small6 > < 1head3 e
+
+body l < 1head4 L< # h4 dalam body beserta atribut src
+1head4 a2 L 1head4 4L
+1head4 " 4 1head4 "4
+1head4 * " 1head4 "
+1head4 " "4 1head4 e
+1head4 > L 1head4 >L 
+1head4 * > 1head4 >
+1head4 < > 1head4 <>
+1head4 l1 <>L 1head4 e
+1head4 > < body e
+
+1head4 b < bold7 B< # tag element formatting untuk tag script
+bold7 > B bold7 >B
+bold7 a2 B bold7 4B
+bold7 " 4 bold7 "4
+bold7 * " bold7 "
+bold7 " "4 bold7 e
+bold7 * > bold7 >
+bold7 < > bold7 e
+bold7 b1 B bold7 e
+bold7 > < 1head4 e
+
+1head4 o < em7 O<
+em7 > O em7 >O
+em7 a2 O em7 4O
+em7 " 4 em7 "4
+em7 * " em7 "
+em7 " "4 em7 e
+em7 * > em7 >
+em7 < > em7 e
+em7 o1 O em7 e
+em7 > < 1head4 e
+
+1head4 q < abbr7 Q<
+abbr7 > Q abbr7 >Q
+abbr7 a2 Q abbr7 4Q
+abbr7 " 4 abbr7 "4
+abbr7 * " abbr7 "
+abbr7 " "4 abbr7 e
+abbr7 * > abbr7 >
+abbr7 < > abbr7 e
+abbr7 q1 Q abbr7 e
+abbr7 > < 1head4 e
+
+1head4 r < strong7 R<
+strong7 > R strong7 >R
+strong7 a2 R strong7 4R
+strong7 " 4 strong7 "4
+strong7 * " strong7 "
+strong7 " "4 strong7 e
+strong7 * > strong7 >
+strong7 < > strong7 e
+strong7 r1 R strong7 e
+strong7 > < 1head4 e
+
+1head4 s < small7 S<
+small7 > S small7 >S
+small7 a2 S small7 4S
+small7 " 4 small7 "4
+small7 * " small7 "
+small7 " "4 small7 e
+small7 * > small7 >
+small7 < > small7 e
+small7 s1 S small7 e
+small7 > < 1head4 e
+
+body m < 1head5 M< # h5 dalam body beserta atribut src
+1head5 a2 M 1head5 4M
+1head5 " 4 1head5 "4
+1head5 * " 1head5 "
+1head5 " "4 1head5 e
+1head5 > M 1head5 >M 
+1head5 * > 1head5 >
+1head5 < > 1head5 <>
+1head5 m1 <>M 1head5 e
+1head5 > < body e
+
+1head5 b < bold7 B< # tag element formatting untuk tag script
+bold8 > B bold8 >B
+bold8 a2 B bold8 4B
+bold8 " 4 bold8 "4
+bold8 * " bold8 "
+bold8 " "4 bold8 e
+bold8 * > bold8 >
+bold8 < > bold8 e
+bold8 b1 B bold8 e
+bold8 > < 1head5 e
+
+1head5 o < em8 O<
+em8 > O em8 >O
+em8 a2 O em8 4O
+em8 " 4 em8 "4
+em8 * " em8 "
+em8 " "4 em8 e
+em8 * > em8 >
+em8 < > em8 e
+em8 o1 O em8 e
+em8 > < 1head5 e
+
+1head5 q < abbr8 Q<
+abbr8 > Q abbr8 >Q
+abbr8 a2 Q abbr8 4Q
+abbr8 " 4 abbr8 "4
+abbr8 * " abbr8 "
+abbr8 " "4 abbr8 e
+abbr8 * > abbr8 >
+abbr8 < > abbr8 e
+abbr8 q1 Q abbr8 e
+abbr8 > < 1head5 e
+
+1head5 r < strong8 R<
+strong8 > R strong8 >R
+strong8 a2 R strong8 4R
+strong8 " 4 strong8 "4
+strong8 * " strong8 "
+strong8 " "4 strong8 e
+strong8 * > strong8 >
+strong8 < > strong8 e
+strong8 r1 R strong8 e
+strong8 > < 1head5 e
+
+1head5 s < small8 S<
+small8 > S small8 >S
+small8 a2 S small8 4S
+small8 " 4 small8 "4
+small8 * " small8 "
+small8 " "4 small8 e
+small8 * > small8 >
+small8 < > small8 e
+small8 s1 S small8 e
+small8 > < 1head5 e
+
+body n < 1head6 N< # h6 dalam body beserta atribut src
+1head6 a2 N 1head6 4N
+1head6 " 4 1head6 "4
+1head6 * " 1head6 "
+1head6 " "4 1head6 e
+1head6 > N 1head6 >N 
+1head6 * > 1head6 >
+1head6 < > 1head6 <>
+1head6 n1 <>N 1head6 e
+1head6 > < body e
+
+1head6 b < bold9 B< # tag element formatting untuk tag script
+bold9 > B bold9 >B
+bold9 a2 B bold9 4B
+bold9 " 4 bold9 "4
+bold9 * " bold9 "
+bold9 " "4 bold9 e
+bold9 * > bold9 >
+bold9 < > bold9 e
+bold9 b1 B bold9 e
+bold9 > < 1head6 e
+
+1head6 o < em9 O<
+em9 > O em9 >O
+em9 a2 O em9 4O
+em9 " 4 em9 "4
+em9 * " em9 "
+em9 " "4 em9 e
+em9 * > em9 >
+em9 < > em9 e
+em9 o1 O em9 e
+em9 > < 1head6 e
+
+1head6 q < abbr9 Q<
+abbr9 > Q abbr9 >Q
+abbr9 a2 Q abbr9 4Q
+abbr9 " 4 abbr9 "4
+abbr9 * " abbr9 "
+abbr9 " "4 abbr9 e
+abbr9 * > abbr9 >
+abbr9 < > abbr9 e
+abbr9 q1 Q abbr9 e
+abbr9 > < 1head6 e
+
+1head6 r < strong9 R<
+strong9 > R strong9 >R
+strong9 a2 R strong9 4R
+strong9 " 4 strong9 "4
+strong9 * " strong9 "
+strong9 " "4 strong9 e
+strong9 * > strong9 >
+strong9 < > strong9 e
+strong9 r1 R strong9 e
+strong9 > < 1head6 e
+
+1head6 s < small9 S<
+small9 > S small9 >S
+small9 a2 S small9 4S
+small9 " 4 small9 "4
+small9 * " small9 "
+small9 " "4 small9 e
+small9 * > small9 >
+small9 < > small9 e
+small9 s1 S small9 e
+small9 > < 1head6 e
+
+body a < hyper A< # a dalam body beserta atribut href
+hyper a2 A hyper 4A
+hyper " 4 hyper "4
+hyper * " hyper "
+hyper " "4 hyper e
+hyper c2 A hyper 6A
+hyper " 6 hyper "6
+hyper " "6 hyper e
+hyper > A hyper >A 
+hyper * > hyper >
+hyper < > hyper <>
+hyper a1 <>A hyper e
+hyper > < body e
+
+hyper b < bold10 B< # tag element formatting untuk tag a
+bold10 > B bold10 >B
+bold10 a2 B bold10 4B
+bold10 " 4 bold10 "4
+bold10 * " bold10 "
+bold10 " "4 bold10 e
+bold10 * > bold10 >
+bold10 < > bold10 e
+bold10 b1 B bold10 e
+bold10 > < hyper e
+
+hyper o < em10 O<
+em10 > O em10 >O
+em10 a2 O em10 4O
+em10 " 4 em10 "4
+em10 * " em10 "
+em10 " "4 em10 e
+em10 * > em10 >
+em10 < > em10 e
+em10 o1 O em10 e
+em10 > < hyper e
+
+hyper q < abbr10 Q<
+abbr10 > Q abbr10 >Q
+abbr10 a2 Q abbr10 4Q
+abbr10 " 4 abbr10 "4
+abbr10 * " abbr10 "
+abbr10 " "4 abbr10 e
+abbr10 * > abbr10 >
+abbr10 < > abbr10 e
+abbr10 q1 Q abbr10 e
+abbr10 > < hyper e
+
+hyper r < strong10 R<
+strong10 > R strong10 >R
+strong10 a2 R strong10 4R
+strong10 " 4 strong10 "4
+strong10 * " strong10 "
+strong10 " "4 strong10 e
+strong10 * > strong10 >
+strong10 < > strong10 e
+strong10 r1 R strong10 e
+strong10 > < hyper e
+
+hyper s < small10 S<
+small10 > S small10 >S
+small10 a2 S small10 4S
+small10 " 4 small10 "4
+small10 * " small10 "
+small10 " "4 small10 e
+small10 * > small10 >
+small10 < > small10 e
+small10 s1 S small10 e
+small10 > < hyper e
+
+body b < bold11 B< # tag element formatting di dalam tag body
+bold11 > B bold11 >B
+bold11 a2 B bold11 4B
+bold11 " 4 bold11 "4
+bold11 * " bold11 "
+bold11 " "4 bold11 e
+bold11 * > bold11 >
+bold11 < > bold11 e
+bold11 b1 B bold11 e
+bold11 > < body e
+
+body o < em11 O<
+em11 > O em11 >O
+em11 a2 O em11 4O
+em11 " 4 em11 "4
+em11 * " em11 "
+em11 " "4 em11 e
+em11 * > em11 >
+em11 < > em11 e
+em11 o1 O em11 e
+em11 > < body e
+
+body q < abbr11 Q<
+abbr11 > Q abbr11 >Q
+abbr11 a2 Q abbr11 4Q
+abbr11 " 4 abbr11 "4
+abbr11 * " abbr11 "
+abbr11 " "4 abbr11 e
+abbr11 * > abbr11 >
+abbr11 < > abbr11 e
+abbr11 q1 Q abbr11 e
+abbr11 > < body e
+
+body r < strong11 R<
+strong11 > R strong11 >R
+strong11 a2 R strong11 4R
+strong11 " 4 strong11 "4
+strong11 * " strong11 "
+strong11 " "4 strong11 e
+strong11 * > strong11 >
+strong11 < > strong11 e
+strong11 r1 R strong11 e
+strong11 > < body e
+
+body s < small11 S<
+small11 > S small11 >S
+small11 a2 S small11 4S
+small11 " 4 small11 "4
+small11 * " small11 "
+small11 " "4 small11 e
+small11 * > small11 >
+small11 < > small11 e
+small11 s1 S small11 e
+small11 > < body e
+
+body p < paragraph P< # p dalam body beserta atribut global
+paragraph a2 P paragraph 4P
+paragraph " 4 paragraph "4
+paragraph * " paragraph "
+paragraph " "4 paragraph e
+paragraph > P paragraph >P 
+paragraph * > paragraph >
+paragraph < > paragraph <>
+paragraph p1 <>P paragraph e
+paragraph > < body e
+
+paragraph b < bold12 B< # tag element formatting untuk tag p
+bold12 > B bold12 >B
+bold12 a2 B bold12 4B
+bold12 " 4 bold12 "4
+bold12 * " bold12 "
+bold12 " "4 bold12 e
+bold12 * > bold12 >
+bold12 < > bold12 e
+bold12 b1 B bold12 e
+bold12 > < paragraph e
+
+paragraph o < em12 O<
+em12 > O em12 >O
+em12 a2 O em12 4O
+em12 " 4 em12 "4
+em12 * " em12 "
+em12 " "4 em12 e
+em12 * > em12 >
+em12 < > em12 e
+em12 o1 O em12 e
+em12 > < paragraph e
+
+paragraph q < abbr12 Q<
+abbr12 > Q abbr12 >Q
+abbr12 a2 Q abbr12 4Q
+abbr12 " 4 abbr12 "4
+abbr12 * " abbr12 "
+abbr12 " "4 abbr12 e
+abbr12 * > abbr12 >
+abbr12 < > abbr12 e
+abbr12 q1 Q abbr12 e
+abbr12 > < paragraph e
+
+paragraph r < strong12 R<
+strong12 > R strong12 >R
+strong12 a2 R strong12 4R
+strong12 " 4 strong12 "4
+strong12 * " strong12 "
+strong12 " "4 strong12 e
+strong12 * > strong12 >
+strong12 < > strong12 e
+strong12 r1 R strong12 e
+strong12 > < paragraph e
+
+paragraph s < small12 S<
+small12 > S small12 >S
+small12 a2 S small12 4S
+small12 " 4 small12 "4
+small12 * " small12 "
+small12 " "4 small12 e
+small12 * > small12 >
+small12 < > small12 e
+small12 s1 S small12 e
+small12 > < paragraph e
+
+body t < brhr T< # tag br, hr, dalam tag body, atribut global
+brhr a2 R brhr 4T
+brhr " 4 brhr "4
+brhr * " brhr "
+brhr " "4 brhr e
+brhr > T< body e
+
+body v < image V<  # image di dalam body beserta atribut src alt, id, class, style
+image a2 V image 4V
+image a2 5 link 45
+image " 4 image "4
+image * " image "
+image " "4 image e
+image d2 V image 5V
+image " 5 image +5
+image * + image +
+image " + image e
+image e2 V image 6V
+image e2 5 image 65
+image " 6 image "6
+image " "6 image e
+image > 5V< body e
+
+body y < input Y<  # input di dalam body beserta atribut type, id, class, style
+input a2 Y input 4Y
+input " 4 input "4
+input * " input "
+input " "4 input e
+input f2 Y input 7Y
+input " 7 input %7
+input y3 % input ~%
+input " ~%7 input e
+input > < body e
+
+body z < table Z< # table, tr, td, th
+table a2 Y table 4Y
+table " 4 table "4
+table * " table "
+table " "4 table e
+table > Z table >Z
+table < > table <>
+table z1 <>Z table e
+table > < body e
+
+table aa < tr 1< 
+tr > 1 tr >1
+tr a2 1 tr 41
+tr " 4 tr "4
+tr * " tr "
+tr " "4 tr e
+tr < > tr <>
+tr aa1 <>1 tr e
+tr > < table e
+
+tr ab < td 2<
+td a2 2 td 42
+td " 4 td "4
+td * " td "
+td " "4 td e
+td > 2 td >2
+td * > td >
+td < > td <>
+td ab1 <>2 td e
+td > < tr e
+
+td b < bold15 B< # tag element formatting untuk tag td
+bold15 > B bold15 >B
+bold15 a2 B bold15 4B
+bold15 " 4 bold15 "4
+bold15 * " bold15 "
+bold15 " "4 bold15 e
+bold15 * > bold15 >
+bold15 < > bold15 e
+bold15 b1 B bold15 e
+bold15 > < td e
+
+td o < em15 O<
+em15 > O em15 >O
+em15 a2 O em15 4O
+em15 " 4 em15 "4
+em15 * " em15 "
+em15 " "4 em15 e
+em15 * > em15 >
+em15 < > em15 e
+em15 o1 O em15 e
+em15 > < td e
+
+td q < abbr15 Q<
+abbr15 > Q abbr15 >Q
+abbr15 a2 Q abbr15 4Q
+abbr15 " 4 abbr15 "4
+abbr15 * " abbr15 "
+abbr15 " "4 abbr15 e
+abbr15 * > abbr15 >
+abbr15 < > abbr15 e
+abbr15 q1 Q abbr15 e
+abbr15 > < td e
+
+td r < strong15 R<
+strong15 > R strong15 >R
+strong15 a2 R strong15 4R
+strong15 " 4 strong15 "4
+strong15 * " strong15 "
+strong15 " "4 strong15 e
+strong15 * > strong15 >
+strong15 < > strong15 e
+strong15 r1 R strong15 e
+strong15 > < td e
+
+td s < small15 S<
+small15 > S small15 >S
+small15 a2 S small15 4S
+small15 " 4 small15 "4
+small15 * " small15 "
+small15 " "4 small15 e
+small15 * > small15 >
+small15 < > small15 e
+small15 s1 S small15 e
+small15 > < td e
+
+tr ac < th 3<
+th a2 3 th 43
+th " 4 th "4
+th * " th "
+th " "4 th e
+th > 3 th >3
+th * > th >
+th < > th <>
+th ac1 <>3 th e
+th > < tr e
+
+th b < bold14 B< # tag element formatting untuk tag th
+bold14 > B bold14 >B
+bold14 a2 B bold14 4B
+bold14 " 4 bold14 "4
+bold14 * " bold14 "
+bold14 " "4 bold14 e
+bold14 * > bold14 >
+bold14 < > bold14 e
+bold14 b1 B bold14 e
+bold14 > < th e
+
+th o < em14 O<
+em14 > O em14 >O
+em14 a2 O em14 4O
+em14 " 4 em14 "4
+em14 * " em14 "
+em14 " "4 em14 e
+em14 * > em14 >
+em14 < > em14 e
+em14 o1 O em14 e
+em14 > < th e
+
+th q < abbr14 Q<
+abbr14 > Q abbr14 >Q
+abbr14 a2 Q abbr14 4Q
+abbr14 " 4 abbr14 "4
+abbr14 * " abbr14 "
+abbr14 " "4 abbr14 e
+abbr14 * > abbr14 >
+abbr14 < > abbr14 e
+abbr14 q1 Q abbr14 e
+abbr14 > < th e
+
+th r < strong14 R<
+strong14 > R strong14 >R
+strong14 a2 R strong14 4R
+strong14 " 4 strong14 "4
+strong14 * " strong14 "
+strong14 " "4 strong14 e
+strong14 * > strong14 >
+strong14 < > strong14 e
+strong14 r1 R strong14 e
+strong14 > < th e
+
+th s < small14 S<
+small14 > S small14 >S
+small14 a2 S small14 4S
+small14 " 4 small14 "4
+small14 * " small14 "
+small14 " "4 small14 e
+small14 * > small14 >
+small14 < > small14 e
+small14 s1 S small14 e
+small14 > < th e
+
+body w < button W< # button dalam body
+button a2 W button 4W
+button " 4 button "4
+button * " button "
+button " "4 button e
+button f2 W button 8W
+button " 8 button %8
+button w3 % button ~%
+button " ~%8 button e
+button > w button >W
+button * > button >
+button < > button <>
+button w1 <>W button e
+button > < body e
+
+button b < bold13 B< # tag element formatting untuk tag button
+bold13 > B bold13 >B
+bold13 a2 B bold13 4B
+bold13 " 4 bold13 "4
+bold13 * " bold13 "
+bold13 " "4 bold13 e
+bold13 * > bold13 >
+bold13 < > bold13 e
+bold13 b1 B bold13 e
+bold13 > < button e
+
+button o < em13 O<
+em13 > O em13 >O
+em13 a2 O em13 4O
+em13 " 4 em13 "4
+em13 * " em13 "
+em13 " "4 em13 e
+em13 * > em13 >
+em13 < > em13 e
+em13 o1 O em13 e
+em13 > < button e
+
+button q < abbr13 Q<
+abbr13 > Q abbr13 >Q
+abbr13 a2 Q abbr13 4Q
+abbr13 " 4 abbr13 "4
+abbr13 * " abbr13 "
+abbr13 " "4 abbr13 e
+abbr13 * > abbr13 >
+abbr13 < > abbr13 e
+abbr13 q1 Q abbr13 e
+abbr13 > < button e
+
+button r < strong13 R<
+strong13 > R strong13 >R
+strong13 a2 R strong13 4R
+strong13 " 4 strong13 "4
+strong13 * " strong13 "
+strong13 " "4 strong13 e
+strong13 * > strong13 >
+strong13 < > strong13 e
+strong13 r1 R strong13 e
+strong13 > < button e
+
+button s < small13 S<
+small13 > S small13 >S
+small13 a2 S small13 4S
+small13 " 4 small13 "4
+small13 * " small13 "
+small13 " "4 small13 e
+small13 * > small13 >
+small13 < > small13 e
+small13 s1 S small13 e
+small13 > < button e
+
+body u < div1 U< # div dalam div dalam div dalam div .... infinite, dengan atribut global
+div1 > U div1 >U
+div1 a2 U div1 4U
+div1 " 4 div1 "4
+div1 * " div1 "
+div1 " "4 div1 e
+div1 < > div2 ^>
+div2 < > div2 ^>
+div2 u1 ^>u div3 e
+div3 > < body e
+div2 u ^ div4 U^
+div2 u C div4 UC
+div4 > U div4 >U
+div4 a2 U div4 4U
+div4 " 4 div4 "4
+div4 * " div4 "
+div4 " "4 div4 e
+div4 < > div2 C>
+div2 u1 C>u div5 e
+div5 > C div5 >C
+div5 < > div5 e
+div5 u1 C>u div5 e
+div5 u1 ^>u div3 e 
+
+body x < form X< # form dalam body
+form > X form >X
+form a2 X form 4X
+form " 4 form "4
+form * " form "
+form " "4 form e
+form g2 X form 6X
+form " 6 form "6
+form * " form "
+form " "6 form e
+form h2 Y form 9Y
+form " 9 form %9
+form x3 % form ~%
+form " ~%9 form e
+form < > form (>
+form x1 (>X form e
+form > < body e
+
+form u ( div1 u( # div dalam form
+div3 > ( form e
+
+div2 g ^ link2 G^ # tag yang boleh dalam div
+link2 > 5G^ div2 e
+div2 g C link2 GC
+link2 > 5GC div2 e
+
+div2 h ^ script2 H^
+script2 > ^ div2 e
+div2 h C script2 HC
+script2 > C div2 e
+
+div2 i ^ 1head1 I^
+1head1 > ^ div2 e
+div2 i C 1head1 IC
+1head1 > C div2 e
+
+div2 j ^ 1head2 J^
+1head2 > ^ div2 e
+div2 j C 1head2 JC
+1head2 > C div2 e
+
+div2 k ^ 1head3 K^
+1head3 > ^ div2 e
+div2 k C 1head3 KC
+1head3 > C div2 e
+
+div2 l ^ 1head4 L^
+1head4 > ^ div2 e
+div2 l C 1head4 LC
+1head4 > C div2 e
+
+div2 m ^ 1head5 M^
+1head5 > ^ div2 e
+div2 m C 1head5 MC
+1head5 > C div2 e
+
+div2 n ^ 1head6 N^
+1head6 > ^ div2 e
+div2 n C 1head6 NC
+1head6 > C div2 e
+
+div2 a ^ hyper A^
+hyper > ^ div2 e
+div2 a C hyper AC
+hyper > C div2 e
+
+div2 b ^ bold11 B^
+bold11 > ^ div2 e
+div2 b C bold11 BC
+bold11 > C div2 e
+
+div2 o ^ em11 O^
+em11 > ^ div2 e
+div2 o C em11 OC
+em11 > C div2 e
+
+div2 q ^ abbr11 Q^
+abbr11 > ^ div2 e
+div2 q C abbr11 QC
+abbr11 > C div2 e
+
+div2 r ^ strong11 R^
+strong11 > ^ div2 e
+div2 r C strong11 RC
+strong11 > C div2 e
+
+div2 s ^ small11 S^
+small11 > ^ div2 e
+div2 s C small11 SC
+small11 > C div2 e
+
+div2 p ^ paragraph P^
+paragraph > ^ div2 e
+div2 p C paragraph PC
+paragraph > C div2 e
+
+div2 t ^ brhr T^
+brhr > T^ div2 e
+div2 t C brhr TC
+brhr > TC div2 e
+
+div2 v ^ image V^
+image > 5V^ div2 e
+div2 v C image VC
+image > 5VC div2 e
+
+div2 w ^ button W^
+button > ^ div2 e
+div2 w C button WC
+button > C div2 e
+
+div2 x ^ form X^
+form > ^ div2 e
+div2 x C form XC
+form > C div2 e
+
+div2 y ^ input Y^
+input > ^ div2 e
+div2 y C input YC
+input > C div2 e
+
+div2 z ^ table Z^
+table > ^ div2 e
+div2 z C table ZC
+table > C div2 e
+
+form g ( link2 G( # tag yang boleh dalam form
+link2 > 5G( form e
+
+form h ( script2 H(
+script2 > ( form e
+
+form i ( 1head1 I(
+1head1 > ( form e
+
+form j ( 1head2 J(
+1head2 > ( form e
+
+form k ( 1head3 K(
+1head3 > ( form e
+
+form l ( 1head4 L(
+1head4 > ( form e
+
+form m ( 1head5 M(
+1head5 > ( form e
+
+form n ( 1head6 N(
+1head6 > ( form e
+
+form a ( hyper A(
+hyper > ( form e
+
+form b ( bold11 B(
+bold11 > ( form e
+
+form o ( em11 O(
+em11 > ( form e
+
+form q ( abbr11 Q(
+abbr11 > ( form e
+
+form r ( strong11 R(
+strong11 > ( form e
+
+form s ( small11 S(
+small11 > ( form e
+
+form p ( paragraph P(
+paragraph > ( form e
+
+form t ( brhr T(
+brhr > T( form e
+
+form v ( image V(
+image > 5V( form e
+
+form w ( button W(
+button > ( form e
+
+form y ( input Y(
+input > ( form e
+
+form z ( table Z(
+table > ( form e
+
+comment _ $ comment _$ # state ketika terdapat komentar
+comment * _ comment *
+comment _ _ comment e
+
+html $ 0 comment $0
+comment 0 $ html e
+
+head $ ] comment $]
+comment ] head e
+head $ ) comment $)
+comment ) head e
+body $ ] comment $]
+comment ] body e
+body $ } comment $}
+comment } body e
+chtml $ ] comment $]
+comment ] $ chtml e
+chtml $ 0 comment $0
+comment 0 $ chtml e
+
+title $ > comment $>
+comment > $ title e
+script1 $ > comment $>
+comment > $ script1 e
+script2 $ > comment $>
+comment > $ script2 e
+1head1 $ > comment $>
+comment > $ 1head1 e
+1head2 $ > comment $>
+comment > $ 1head2 e
+1head3 $ > comment $>
+comment > $ 1head3 e
+1head4 $ > comment $>
+comment > $ 1head4 e
+1head5 $ > comment $>
+comment > $ 1head5 e
+1head6 $ > comment $>
+comment > $ 1head6 e
+paragraph $ > comment $>
+comment > $ paragraph e
+
+em1 $ > comment $>
+comment > $ em1 e
+em2 $ > comment $>
+comment > $ em2 e
+em3 $ > comment $>
+comment > $ em3 e
+em4 $ > comment $>
+comment > $ em4 e
+em5 $ > comment $>
+comment > $ em5 e
+em6 $ > comment $>
+comment > $ em6 e
+em7 $ > comment $>
+comment > $ em7 e
+em8 $ > comment $>
+comment > $ em8 e
+em9 $ > comment $>
+comment > $ em9 e
+em10 $ > comment $>
+comment > $ em10 e
+em11 $ > comment $>
+comment > $ em11 e
+em12 $ > comment $>
+comment > $ em12 e
+em13 $ > comment $>
+comment > $ em13 e
+em14 $ > comment $>
+comment > $ em14 e
+em15 $ > comment $>
+comment > $ em15 e
+
+bold1 $ > comment $>
+comment > $ bold1 e
+bold2 $ > comment $>
+comment > $ bold2 e
+bold3 $ > comment $>
+comment > $ bold3 e
+bold4 $ > comment $>
+comment > $ bold4 e
+bold5 $ > comment $>
+comment > $ bold5 e
+bold6 $ > comment $>
+comment > $ bold6 e
+bold7 $ > comment $>
+comment > $ bold7 e
+bold8 $ > comment $>
+comment > $ bold8 e
+bold9 $ > comment $>
+comment > $ bold9 e
+bold10 $ > comment $>
+comment > $ bold10 e
+bold11 $ > comment $>
+comment > $ bold11 e
+bold12 $ > comment $>
+comment > $ bold12 e
+bold13 $ > comment $>
+comment > $ bold13 e
+bold14 $ > comment $>
+comment > $ bold14 e
+bold15 $ > comment $>
+comment > $ bold15 e
+
+abbr1 $ > comment $>
+comment > $ abbr1 e
+abbr2 $ > comment $>
+comment > $ abbr2 e
+abbr3 $ > comment $>
+comment > $ abbr3 e
+abbr4 $ > comment $>
+comment > $ abbr4 e
+abbr5 $ > comment $>
+comment > $ abbr5 e
+abbr6 $ > comment $>
+comment > $ abbr6 e
+abbr7 $ > comment $>
+comment > $ abbr7 e
+abbr8 $ > comment $>
+comment > $ abbr8 e
+abbr9 $ > comment $>
+comment > $ abbr9 e
+abbr10 $ > comment $>
+comment > $ abbr10 e
+abbr11 $ > comment $>
+comment > $ abbr11 e
+abbr12 $ > comment $>
+comment > $ abbr12 e
+abbr13 $ > comment $>
+comment > $ abbr13 e
+abbr14 $ > comment $>
+comment > $ abbr14 e
+abbr15 $ > comment $>
+comment > $ abbr15 e
+
+strong1 $ > comment $>
+comment > $ strong1 e
+strong2 $ > comment $>
+comment > $ strong2 e
+strong3 $ > comment $>
+comment > $ strong3 e
+strong4 $ > comment $>
+comment > $ strong4 e
+strong5 $ > comment $>
+comment > $ strong5 e
+strong6 $ > comment $>
+comment > $ strong6 e
+strong7 $ > comment $>
+comment > $ strong7 e
+strong8 $ > comment $>
+comment > $ strong8 e
+strong9 $ > comment $>
+comment > $ strong9 e
+strong10 $ > comment $>
+comment > $ strong10 e
+strong11 $ > comment $>
+comment > $ strong11 e
+strong12 $ > comment $>
+comment > $ strong12 e
+strong13 $ > comment $>
+comment > $ strong13 e
+strong14 $ > comment $>
+comment > $ strong14 e
+strong15 $ > comment $>
+comment > $ strong15 e
+
+small1 $ > comment $>
+comment > $ small1 e
+small2 $ > comment $>
+comment > $ small2 e
+small3 $ > comment $>
+comment > $ small3 e
+small4 $ > comment $>
+comment > $ small4 e
+small5 $ > comment $>
+comment > $ small5 e
+small6 $ > comment $>
+comment > $ small6 e
+small7 $ > comment $>
+comment > $ small7 e
+small8 $ > comment $>
+comment > $ small8 e
+small9 $ > comment $>
+comment > $ small9 e
+small10 $ > comment $>
+comment > $ small10 e
+small11 $ > comment $>
+comment > $ small11 e
+small12 $ > comment $>
+comment > $ small12 e
+small13 $ > comment $>
+comment > $ small13 e
+small14 $ > comment $>
+comment > $ small14 e
+small15 $ > comment $>
+comment > $ small15 e
+
+div1 $ > comment $>
+comment > $ div1 e
+div2 $ > comment $>
+comment > $ div2 e
+div3 $ > comment $>
+comment > $ div3 e
+div4 $ > comment $>
+comment > $ div4 e
+div5 $ > comment $>
+comment > $ div5 e
+
+hyper $ > comment $>
+comment > $ hyper 
+button $ > comment $>
+comment > $ button e
+form $ > comment $>
+comment > $ form e
+table $ > comment $>
+comment > $ table e
+tr $ > comment $>
+comment > $ tr e
+td $ > comment $>
+comment > $ td e
+th $ > comment $>
+comment > $ th e

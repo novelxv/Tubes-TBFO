@@ -80,7 +80,9 @@ def convert_html_symbols(html_code):
 
 def process_input_symbols(current_state, input, stack, productions):
     found_production = False
+    print(f"current_state: {current_state}, input: {input}, top_stack: {stack[0]}")
     for production in productions:
+        # print(f"current_state: {production[0]}, char: {production[1]}, top_stack: {production[2][0]}")
         if (
             production[0] == current_state and
             (production[1] == input or production[1] == 'e') and
@@ -96,7 +98,7 @@ def process_input_symbols(current_state, input, stack, productions):
             if production[1] != 'e':
                 if production[4] == 'e':
                     stack.pop(0)
-                    if len(production[2]):
+                    if len(production[2]) == 2:
                         stack.pop(0)
                 else:
                     stack.insert(0, production[4][0])
@@ -149,7 +151,7 @@ def evaluate_html_with_pda(html_code, pda_definition):
                 inside_tag = False
                 print("input: ", input)
                 current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                # print("current state: ", current_state)                
+                print("stack setelah proses input: ", stack)                
                 current_state, stack = process_input_symbols(current_state, char, stack, productions)
                 print("current state: ", current_state)
                 input = ""

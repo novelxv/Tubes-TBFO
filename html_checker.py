@@ -160,8 +160,6 @@ def process_input_symbols(current_state, input, stack, productions, found_produc
             html_symbol = 'string'
         else:
             html_symbol = reverse_convert_html_symbol(input)
-            if html_symbol == "":
-                html_symbol = 'teks random'
         print(f"Syntax Error at state '{current_state}'")
         print(f"Syntax Error at character '{html_symbol}'")
 
@@ -296,7 +294,7 @@ def main():
         print("Usage: python html_checker.py")
         sys.exit(1)
 
-    pda_definition_file = "PDAKELAR.txt"
+    pda_definition_file = "PDA.txt"
     html_file = input("\n\nMasukkan file HTML yang ingin dicek: ")
     html_file_path = f"test/{html_file}"
 

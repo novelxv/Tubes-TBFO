@@ -39,36 +39,6 @@ def read_html_code(file_path):
 def convert_html_symbols(html_code):
     # Mengonversi simbol-simbol dalam HTML
     symbol_mapping = {
-        # '/html' : 'c1', 'html' : 'c', 
-        # '/head' : 'd1', 'head' : 'd',
-        # '/body' : 'e1', 'body' : 'e3',
-        # '/title' : 'f1', 'title' : 'f',
-        # 'link' : 'g', 
-        # '/h1' : 'i1', 'h1' : 'i',
-        # '/h2' : 'j1', 'h2' : 'j',
-        # '/h3' : 'k1', 'h3' : 'k',
-        # '/h4' : 'l1', 'h4' : 'l',
-        # '/h5' : 'm1', 'h5' : 'm',
-        # '/h6' : 'n1', 'h6' : 'n',
-        # '/script' : 'h1', 'script' : 'h',
-        # 'em' : 'o', 'abbr' : 'q', 'strong' : 'r',
-        # 'small' : 's', 'br' : 't', 'hr' : 't',
-        # 'div' : 'u', 'img' : 'v', 'button' : 'w',
-        # 'form' : 'x', 'input' : 'y', 'table' : 'z',
-        # 'tr' : 'aa', 'td' : 'ab', 'th' : 'ac',
-        # '/a' : 'a1', '/b' : 'b1', 
-        # '/em' : 'o1', '/p' : 'p1',
-        # '/abbr' : 'q1', '/strong' : 'r1', '/small' : 's1',
-        # '/div' : 'u1', '/button' : 'w1', '/form' : '/x1',
-        # '/table' : 'z1', '/tr' : 'aa1', '/td' : 'ab1', 
-        # '/th' : 'ac1', 'id=' : 'a2', 'class=' : 'a2',
-        # 'style=' : 'a2', 'rel=' : 'b2', 'href=' : 'c2',
-        # 'src=' : 'd2', 'alt=' : 'e2', 'type=' : 'f2',
-        # 'action=' : 'g2', 'method=' : 'h2', 'submit' : 'l3',
-        # 'reset' : 'l3', 'button' : 'l3', 'GET' : 'm3', 
-        # 'POST' : 'm3', 'text' : 'n3', 'password' : 'n3',
-        # 'email' : 'n3', 'number' : 'n3', 'checkbox' : 'n3', 
-
         '/html': 'c1', 'html': 'c',
         '/head': 'd1', 'head': 'd',
         '/body': 'e1', '/button': 'w1', 'button' : 'w',
@@ -112,29 +82,22 @@ def convert_html_symbols(html_code):
     converted_code = html_code
     for original_symbol, new_symbol in symbol_mapping.items():
         converted_code = converted_code.replace(original_symbol, new_symbol)
-    print(converted_code)
+    print(converted_code) # debug
     return converted_code
-
-# current_state = '0'
 
 def process_input_symbols(current_state, input, stack, productions):
     found_production = False
     print(f"current_state: {current_state}, input: {input}, top_stack: {stack[0]}")
     for production in productions:
-        # print(production[0])
-        # print(f"current_state: {production[0]}, char: {production[1]}, top_stack: {production[2][0]}")
         if (
             production[0] == current_state and
             (production[1] == input or production[1] == 'e') and
             production[2][0] == stack[0]
         ):
-            print("masuk")
-            # print(production[4])
+            print("masuk") # debug
             current_state = production[3]
-            print("curr state: ", current_state)
-            # stack.pop(0)
-            # print(stack)
-            # print("Setelah pop", stack)
+            print("curr state: ", current_state) # debug
+
             if production[2] != production[4]:
                 if production[1] != 'e':
                     if production[4] == 'e':
@@ -145,32 +108,21 @@ def process_input_symbols(current_state, input, stack, productions):
                                 stack.pop(0)
                     else:
                         stack.insert(0, production[4][0])
-            print(stack)
-            # if production[4] != 'e':
-            #     # stack.extend(list(production[4]))
-            #     # print(stack)
-            #     for symbol in production[4]:
-            #         stack.insert(-1, symbol)
-            #     print(stack)
+            print(stack) # debug
             
             found_production = True
             break
-    # print(i)
-    # i += 1
+
     if not found_production:
         print(f"Syntax Error at character '{input}'")
-        # return False
+
     return current_state, stack
     
 def evaluate_html_with_pda(html_code, pda_definition):
     # Mengevaluasi kode HTML dengan menggunakan PDA
-    states = pda_definition['states']
-    input_symbols = pda_definition['input_symbols']
-    stack_symbols = pda_definition['stack_symbols']
     start_state = pda_definition['start_state']
     start_stack = pda_definition['start_stack']
     accepting_states = pda_definition['accepting_states']
-    accept_condition = pda_definition['accept_condition']
     productions = pda_definition['productions']
     
     in_atribut = ['w', 'w3', 'x3', 'y3']
@@ -178,13 +130,10 @@ def evaluate_html_with_pda(html_code, pda_definition):
     current_state = start_state[0]
     stack = [start_stack[0]]
     
-    # for production in productions:
-        # print(production)
+    print("STACK\n", stack[0]) # debug
 
-    print("STACK\n", stack[0])
-    # i = 0
     if (html_code[0] != "<"):
-        print("Salah Bro")
+        print("Kode HTML harus diawali '<'")
     else:
         input = ""
         inside_tag = False
@@ -193,12 +142,12 @@ def evaluate_html_with_pda(html_code, pda_definition):
         comment = False
         i = 0
         for char in html_code:
-            # >|sss $ _ * _ > sss|<
+            # >|sss $ _ * _ > sss|<      debug
             # print(f"current_state: {current_state}, char: {char}, input: {input}, stack: {stack}")
             if (char == '<' and not inside_tag):
                 if i != 0 and input:
                     input = '*'
-                    print("input:", input)
+                    print("input:", input) # debug
                     process_input_symbols(current_state, input, stack, productions)
                 inside_tag = True
                 current_state, stack = process_input_symbols(current_state, char, stack, productions)
@@ -206,17 +155,17 @@ def evaluate_html_with_pda(html_code, pda_definition):
             elif (char != '>'): 
                 if char == '2' and inside_tag:
                     if input:
-                        print("input:", input)
+                        print("input:", input) # debug
                         current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                        print("stack setelah proses input: ", stack)  
+                        print("stack setelah proses input: ", stack)  # debug
                     input = char
                 elif char == '"' and inside_tag:
                     count_petik += 1
                     if count_petik == 1:
                         if input:
-                            print("input:", input)
+                            print("input:", input) # debug
                             current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                            print("stack setelah proses input: ", stack) 
+                            print("stack setelah proses input: ", stack)  # debug
                     elif count_petik == 2:
                         count_petik = 0 
                         if input:
@@ -231,40 +180,41 @@ def evaluate_html_with_pda(html_code, pda_definition):
                     if char == '_':
                         count_underscore += 1
                     input = char
-                    print("input:", input)
+                    print("input:", input) # debug
                     current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                    print("stack setelah proses input: ", stack) 
+                    print("stack setelah proses input: ", stack) # debug
                 elif char == '_' and count_underscore == 1 and not inside_tag:
                     input = '*'
-                    print("string dalam komen")
+                    print("string dalam komen") # debug
                     current_state, stack = process_input_symbols(current_state, input, stack, productions)
                     input = char
-                    print("proses _ kedua komen")
+                    print("proses _ kedua komen") # debug
                     current_state, stack = process_input_symbols(current_state, char, stack, productions)
                 else: 
                     input += char
             elif (input == '_' and count_underscore == 1 and char == '>' and not inside_tag):
                 count_underscore = 0
-                print("proses > tutup komen")
+                print("proses > tutup komen") # debug
                 current_state, stack = process_input_symbols(current_state, char, stack, productions)
                 input = ""
             elif (char == '>' and inside_tag):
                 inside_tag = False
                 if input:
-                    print("input:", input)
+                    print("input:", input) # debug
                     current_state, stack = process_input_symbols(current_state, input, stack, productions)
-                    print("stack setelah proses input: ", stack)                
+                    print("stack setelah proses input: ", stack)   # debug             
                 current_state, stack = process_input_symbols(current_state, char, stack, productions)
-                print("current state: ", current_state)
+                print("current state: ", current_state) # debug
                 input = ""
             
-            print(i)
+            print(i) # debug
             i += 1
         
-        # if inside tag -> salahhh
-        if input:
-            print("< tidak ditutup") # kalau inside
-        # kalau outside berarti <sada>input 
+        if inside_tag:
+            print("< tidak ditutup")
+        else:
+            if input:
+                print("Terdapat string bebas setelah '>' terakhir")
 
     # Cek final state
     if current_state in accepting_states:
